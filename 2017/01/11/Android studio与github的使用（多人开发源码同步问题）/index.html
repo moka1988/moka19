@@ -218,7 +218,7 @@
 	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
 		for="post-toc-trigger-btn">
 			
-			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-下载git客户端"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.下载git客户端</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-启动命令行"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.启动命令行</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-查看仓库地址"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.查看仓库地址</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-添加远程仓库"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.添加远程仓库</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-检测更新"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.检测更新</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-切换到主分支"><span class="post-toc-number">6.</span> <span class="post-toc-text">6.切换到主分支</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#7-更新"><span class="post-toc-number">7.</span> <span class="post-toc-text">7.更新</span></a></li></ol>
 		
 <!--			<li class="mdl-menu__item">Some Action</li>-->
 	</ul>
@@ -377,17 +377,23 @@
 	
 		<p>之前和朋友一起写一个Android APP，代码不算难，只是要我们一起写，这就出了一些代码合并上以及同步的问题。<br>今天讲的主要是GitHub上分支保持与主干源码同步的问题。</p>
 <p>之前使用的时候就是项目挂在笔者的GitHub上，别人修改的代码提交一个pull request就能够合并到主分支中，但是一直没解决的问题是主分支代码更新了，但是别人的fork的仓库却并没有更新，这个问题课难倒了我们，弄了几次都没成功，后来就一直删除仓库，重新fork来保证代码的更新。</p>
-<p>现在，这个问题终于解决了。<br>我来简单写一下解决步骤：<br>1.下载git客户端，相信如果要用Android studio的提交，应该都下载了git并且配置完毕。<br>2.打开项目文件夹根目录，右键<code>git bash here</code>，打开git命令行。<br>3.首先输入</p>
+<p>现在，这个问题终于解决了。<br>我来简单写一下解决步骤：</p>
+<h4 id="1-下载git客户端"><a href="#1-下载git客户端" class="headerlink" title="1.下载git客户端"></a>1.下载git客户端</h4><p>相信如果要用Android studio的提交，应该都下载了<code>git</code>并且配置完毕。</p>
+<h4 id="2-启动命令行"><a href="#2-启动命令行" class="headerlink" title="2.启动命令行"></a>2.启动命令行</h4><p>打开项目文件夹根目录，右键<code>git bash here</code>，打开git命令行。</p>
+<h4 id="3-查看仓库地址"><a href="#3-查看仓库地址" class="headerlink" title="3.查看仓库地址"></a>3.查看仓库地址</h4><p>输入</p>
 <pre><code>git remote -v
-</code></pre><p>查看项目的仓库地址，一般来说都是如下图的样子：<br><img src="http://img.blog.csdn.net/20161116183229639?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>4.然后呢就输入以下指令添加远程仓库：</p>
+</code></pre><p>查看项目的仓库地址，一般来说都是如下图的样子：<br><img src="http://img.blog.csdn.net/20161116183229639?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<h4 id="4-添加远程仓库"><a href="#4-添加远程仓库" class="headerlink" title="4.添加远程仓库"></a>4.添加远程仓库</h4><p>输入以下指令添加远程仓库：</p>
 <pre><code>git remote add upstream https://github.com/test/xxxxx.git
-</code></pre><p>其中<code>upstream</code>是远程仓库的名称(可更改),后面跟的是远程仓库的http地址,如下图:<br><img src="http://img.blog.csdn.net/20161116183459727?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>5.完成上面的步骤之后你就可以开始和朋友进行开发了,你<code>fork</code>了他的源码,当他更新的时候,你只需要在这个文件夹里打开git命令行,输入</p>
+</code></pre><p>其中<code>upstream</code>是远程仓库的名称(可更改),后面跟的是远程仓库的http地址,如下图:<br><img src="http://img.blog.csdn.net/20161116183459727?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<h4 id="5-检测更新"><a href="#5-检测更新" class="headerlink" title="5.检测更新"></a>5.检测更新</h4><p>完成上面的步骤之后你就可以开始和朋友进行开发了,你<code>fork</code>了他的源码,当他更新的时候,你只需要在这个文件夹里打开git命令行,输入</p>
 <pre><code>git fetch upstream
-</code></pre><p>它会检测远程仓库的所有分支的更新情况<br>6.然后切换到主分支</p>
-<pre><code>git checkout master
+</code></pre><p>它会检测远程仓库的所有分支的更新情况</p>
+<h4 id="6-切换到主分支"><a href="#6-切换到主分支" class="headerlink" title="6.切换到主分支"></a>6.切换到主分支</h4><pre><code>git checkout master
 </code></pre><p>继续执行以下代码:</p>
 <pre><code>git merge upstream/master
-</code></pre><p>这样你就把他更新的代码合并到本地了.<br>7.这个时候进入Android studio你会发现文件更新了,然后执行<code>push</code>,就能把新的代码提交到你的仓库中了.</p>
+</code></pre><p>这样你就把他更新的代码合并到本地了.</p>
+<h4 id="7-更新"><a href="#7-更新" class="headerlink" title="7.更新"></a>7.更新</h4><p>这个时候进入Android studio你会发现文件更新了,然后执行<code>push</code>,就能把新的代码提交到你的仓库中了.</p>
 
 	
 	
@@ -510,7 +516,7 @@
         </a>
         <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">4</span></a>
+            <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">8</span></a>
         </ul>
     </li>
 
@@ -524,7 +530,7 @@
         </a>
         <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/系统/">系统<span class="sidebar_archives-count">1</span></a>
+            <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/C/">C++<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/系统/">系统<span class="sidebar_archives-count">1</span></a>
         </ul>
     </li>
     
@@ -540,7 +546,7 @@
     <li>
         <a href="/archives">
              文章总数
-             <span class="sidebar-badge">4</span>
+             <span class="sidebar-badge">8</span>
         </a>
     </li>
 </ul>
