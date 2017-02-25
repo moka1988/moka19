@@ -1,106 +1,386 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑 | Mystery0の小站</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="说在前面前段时间从京东上撸了一个K2，正好是0元购的活动，所以就弄了一个，今天下午就开始折腾路由器。京东链接从第一个教程中我知道为什么这么多买这个路由器的人要刷机了，据说原因是因为官方固件存在后门，会自动将用户的浏览记录上传，所以推荐用户将斐讯路由器刷成其他的第三方固件。（具体链接）
-错误的认为由于从来没有玩过这个，所以我一直以为路由器刷机应该不难，然而事实是确实不难，只是需要找对教程。我找的第一">
-<meta property="og:type" content="article">
-<meta property="og:title" content="斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑">
-<meta property="og:url" content="http://imystery0.cn/2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/index.html">
-<meta property="og:site_name" content="Mystery0の小站">
-<meta property="og:description" content="说在前面前段时间从京东上撸了一个K2，正好是0元购的活动，所以就弄了一个，今天下午就开始折腾路由器。京东链接从第一个教程中我知道为什么这么多买这个路由器的人要刷机了，据说原因是因为官方固件存在后门，会自动将用户的浏览记录上传，所以推荐用户将斐讯路由器刷成其他的第三方固件。（具体链接）
-错误的认为由于从来没有玩过这个，所以我一直以为路由器刷机应该不难，然而事实是确实不难，只是需要找对教程。我找的第一">
-<meta property="og:image" content="http://www.right.com.cn/forum/forum.php?mod=attachment&aid=MTQ3NzU1fGJiZWI0OTk2fDE0ODc0MjQxMTR8MHwyMDQ0MzU%3D&noupdate=yes">
-<meta property="og:image" content="http://www.right.com.cn/forum/forum.php?mod=attachment&aid=MTQ3NzU3fGZmNWNiN2QyfDE0ODc0MjQxMTR8MHwyMDQ0MzU%3D&noupdate=yes">
-<meta property="og:image" content="http://www.right.com.cn/forum/forum.php?mod=attachment&aid=MTQ3NzU5fDk5NzYzYzAzfDE0ODc0MjQxMTR8MHwyMDQ0MzU%3D&noupdate=yes">
-<meta property="og:image" content="http://www.right.com.cn/forum/forum.php?mod=attachment&aid=MTQ3NzYwfGM2MjMzZWJjfDE0ODc0MjQxMTR8MHwyMDQ0MzU%3D&noupdate=yes">
-<meta property="og:updated_time" content="2017-02-18T14:14:15.485Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑">
-<meta name="twitter:description" content="说在前面前段时间从京东上撸了一个K2，正好是0元购的活动，所以就弄了一个，今天下午就开始折腾路由器。京东链接从第一个教程中我知道为什么这么多买这个路由器的人要刷机了，据说原因是因为官方固件存在后门，会自动将用户的浏览记录上传，所以推荐用户将斐讯路由器刷成其他的第三方固件。（具体链接）
-错误的认为由于从来没有玩过这个，所以我一直以为路由器刷机应该不难，然而事实是确实不难，只是需要找对教程。我找的第一">
-<meta name="twitter:image" content="http://www.right.com.cn/forum/forum.php?mod=attachment&aid=MTQ3NzU1fGJiZWI0OTk2fDE0ODc0MjQxMTR8MHwyMDQ0MzU%3D&noupdate=yes">
-  
-    <link rel="alternate" href="/atom.xml" title="Mystery0の小站" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.2.6 -->
 
+    <!-- Title -->
+    
+    <title>
+        
+            斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑 | 
+        
+        Mystery0の小站
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Mystery0 M">
+    <meta name="description" content="要么做第一个，要么做最好的一个。">
+    <meta name="keywords" content="null">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Mystery0の小站">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://imystery0.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑 | Mystery0の小站">
+    <meta property="og:description" content="要么做第一个，要么做最好的一个。">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+    body, html {
+        font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    }
+
+    a {
+        color: #00838F;
+    }
+
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important;
+    }
+
+    /* Sidebar User Drop Down Menu Text Color */
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+        color: #0097A7 !important;
+    }
+
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+        color: #0097A7 !important;
+    }
+
+    .toTop {
+        background: #757575 !important;
+    }
+
+    .material-layout .material-post>.material-nav,
+    .material-layout .material-index>.material-nav,
+    .material-nav a {
+        color: #757575;
+    }
+
+    #scheme-Paradox .MD-burger-layer {
+        background-color: #757575;
+    }
+
+    #scheme-Paradox #post-toc-trigger-btn {
+        color: #757575;
+    }
+
+    .post-toc a:hover {
+        color: #00838F;
+        text-decoration: underline;
+    }
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-image: url(/img/bg.jpg);
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+
+    <script src="/js/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+    <!-- UC Browser Compatible-->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write('<link rel="stylesheet" href="/css/uc.css">');
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    <!-- Custom Head -->
+    
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Mystery0の小站</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">mystery0dyl520@gmail.com</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://imystery0.cn"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/" class="article-date">
-  <time datetime="2017-02-18T10:54:01.000Z" itemprop="datePublished">2017-02-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux-路由器/">Linux 路由器</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
     
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑
-    </h1>
-  
+        <body id="scheme-Paradox">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
 
-      </header>
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
     
-    <div class="article-entry" itemprop="articleBody">
-      
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#说在前面"><span class="post-toc-number">1.</span> <span class="post-toc-text">说在前面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#错误的认为"><span class="post-toc-number">2.</span> <span class="post-toc-text">错误的认为</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#寻找正确的教程"><span class="post-toc-number">3.</span> <span class="post-toc-text">寻找正确的教程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#教程开始"><span class="post-toc-number">4.</span> <span class="post-toc-text">教程开始</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前提条件"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">前提条件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#正式教程"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">正式教程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#在地址栏内输入K2登录地址，登录K2管理界面，选择右上角的“定时重启路由器”。"><span class="post-toc-number">4.2.0.1.</span> <span class="post-toc-text">在地址栏内输入K2登录地址，登录K2管理界面，选择右上角的“定时重启路由器”。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#点选时间中的右侧下拉分钟选择框，通过浏览器的审查元素查看选择器的源码。"><span class="post-toc-number">4.2.0.2.</span> <span class="post-toc-text">点选时间中的右侧下拉分钟选择框，通过浏览器的审查元素查看选择器的源码。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#将“05”修改成为“05-wget-http-breed-hackpascal-net-breed-mt7620-phicomm-psg1208-bin”-之后，鼠标移动到黑框外的空白处点击鼠标左键，结束编辑。"><span class="post-toc-number">4.2.0.3.</span> <span class="post-toc-text">将“05”修改成为“05 | wget http://breed.hackpascal.net/breed-mt7620-phicomm-psg1208.bin” 之后，鼠标移动到黑框外的空白处点击鼠标左键，结束编辑。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#在定时重启路由器页面上选择05之后，点击“保存”。"><span class="post-toc-number">4.2.0.4.</span> <span class="post-toc-text">在定时重启路由器页面上选择05之后，点击“保存”。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#重复以上的替换操作，执行以下操作"><span class="post-toc-number">4.2.0.5.</span> <span class="post-toc-text">重复以上的替换操作，执行以下操作</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#拔除K2上Wan口的网线，路由器断电，持续按住路由器上的reset按钮，接通路由器电源，几秒后松开reset按钮。（具体几秒自己感知吧。。。十秒肯定是够了吧）"><span class="post-toc-number">4.2.0.6.</span> <span class="post-toc-text">拔除K2上Wan口的网线，路由器断电，持续按住路由器上的reset按钮，接通路由器电源，几秒后松开reset按钮。（具体几秒自己感知吧。。。十秒肯定是够了吧）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#在浏览器地址栏输入“http-192-168-1-1”-访问Breed-Web。进入Breed-Web后，请及时进行EEPROM备份，然后再刷其他的固件。"><span class="post-toc-number">4.2.0.7.</span> <span class="post-toc-text">在浏览器地址栏输入“http://192.168.1.1” 访问Breed Web。进入Breed Web后，请及时进行EEPROM备份，然后再刷其他的固件。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#说明一点"><span class="post-toc-number">4.2.0.8.</span> <span class="post-toc-text">说明一点</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#最后"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">最后</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#相关链接"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">相关链接</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Mystery0 M</strong>
+        <span>2月 18, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑&url=http://imystery0.cn//2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑&url=http://imystery0.cn//2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/index.html&via=Mystery0 M" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://imystery0.cn//2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://imystery0.cn//2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Mystery0の小站&title=斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑&summary=要么做第一个，要么做最好的一个。&pics=http://imystery0.cn/img/favicon.png&url=http://imystery0.cn/2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://imystery0.cn//2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/index.html&text=斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Telegram
+            </li>
+        </a>
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
         <h2 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h2><p>前段时间从京东上撸了一个K2，正好是0元购的活动，所以就弄了一个，今天下午就开始折腾路由器。<a href="https://item.jd.com/2615810.html" title="京东链接" target="_blank" rel="external">京东链接</a><br>从第一个教程中我知道为什么这么多买这个路由器的人要刷机了，据说原因是因为官方固件存在后门，会自动将用户的浏览记录上传，所以推荐用户将斐讯路由器刷成其他的第三方固件。（<a href="http://bbs.mydigit.cn/read.php?tid=1572590" title="具体链接" target="_blank" rel="external">具体链接</a>）</p>
 <h2 id="错误的认为"><a href="#错误的认为" class="headerlink" title="错误的认为"></a>错误的认为</h2><p>由于从来没有玩过这个，所以我一直以为路由器刷机应该不难，然而事实是确实不难，只是需要找对教程。我找的第一个教程（<a href="http://soundrain.net/2016/04/25/%E6%96%90%E8%AE%AFK2%E8%B7%AF%E7%94%B1%E5%88%B7openwrt%E5%AE%9E%E8%B7%B5%E6%95%99%E7%A8%8B/" title="链接" target="_blank" rel="external">链接</a>）是2016年4月份，也是从这个教程我知道了官方固件的问题，更加坚定了我刷机的决心。但是技术的更新换代也实在是太快了，由于这篇教程没有写明适用的版本，所以我错误的认为了这个是通用的教程（大错特错）。所以第一步<code>开启telnet</code>就得到了错误：非法的配置文件。然后我才意识到版本的更新以及厂商的封堵。</p>
 <h2 id="寻找正确的教程"><a href="#寻找正确的教程" class="headerlink" title="寻找正确的教程"></a>寻找正确的教程</h2><p>意识到犯的错误之后，我开始关注路由器的版本以及教程的适用版本以及帖子发布时间。<br>不负众望，我找到了一个很新的帖子（由于我的路由器固件版本是<code>22.4.6.3</code>，所以我关注的都是<code>22.4.6.3</code>的帖子），新到发布时间是今天的凌晨（不敢相信，后来我才知道这是转载的，原帖发布时间是：2016-12-20）。<br>由于新帖踩得坑并不多，所以我在这里贴上原帖地址：<a href="http://www.right.com.cn/forum/thread-204435-1-1.html" title="斐讯K2 22.4.6.3 非telnet 页面直刷 Breed 详细方法（图文）" target="_blank" rel="external">斐讯K2 22.4.6.3 非telnet 页面直刷 Breed 详细方法（图文）</a><br>强烈推荐帖子中的一个用户的视频操作：（swf文件，可直接用chrome打开）原链接<a href="http://pan.baidu.com/s/1dE8p0g5" title="http://pan.baidu.com/s/1dE8p0g5" target="_blank" rel="external">http://pan.baidu.com/s/1dE8p0g5</a> 密码：<code>cptx</code><br>如果和我一样不喜欢百度云的可以通过我提供的<a href="https://1drv.ms/u/s!AuAoQHzZulMsrgUpjih2ua0SRxmp" title="onedrive链接" target="_blank" rel="external">onedrive链接</a>以及<a href="https://drive.google.com/file/d/0B5eE8ni1SrKBaTREUjV0SFlESmM/view?usp=sharing" title="google drive链接" target="_blank" rel="external">google drive链接</a>下载观看。</p>
@@ -129,151 +409,449 @@
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>教程到上面就已经完了，至于为什么图片采用的是原教程的图片，主要是现在我的路由器已经刷成了第三方固件，同时我也不知道怎么恢复官方固件，所以没有办法截图。<br>第一次玩路由器，以后会分享一些玩路由器时踩的坑之类的。<br>此教程应该是适用斐讯路由器中有<code>自动重启路由器</code>操作的固件版本。<br>本人所用版本：斐讯K2 A6 22.4.6.3</p>
 <h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><p><a href="http://www.right.com.cn/forum/thread-204435-1-1.html" title="斐讯K2 22.4.6.3 非telnet 页面直刷 Breed 详细方法（图文）" target="_blank" rel="external">斐讯K2 22.4.6.3 非telnet 页面直刷 Breed 详细方法（图文）</a><br><a href="http://soundrain.net/2016/04/25/%E6%96%90%E8%AE%AFK2%E8%B7%AF%E7%94%B1%E5%88%B7openwrt%E5%AE%9E%E8%B7%B5%E6%95%99%E7%A8%8B/" title="斐讯K2路由刷openwrt实践教程（不适用本版本）" target="_blank" rel="external">斐讯K2路由刷openwrt实践教程（不适用本版本）</a><br><a href="http://bbs.mydigit.cn/read.php?tid=1572590" title="免费的总是最贵的,斐讯K1官方固件惊现后门——疑似窃取用户隐私" target="_blank" rel="external">免费的总是最贵的,斐讯K1官方固件惊现后门——疑似窃取用户隐私</a></p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://imystery0.cn/2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/" data-id="cizl61qdc000nygntehfudvk2" class="article-share-link">Share</a>
-      
-        <a href="http://imystery0.cn/2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/#disqus_thread" class="article-comment-link">留言</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/02/24/解决SnackBar无动画现象/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          解决SnackBar无动画现象
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/02/09/Mojo 框架基本使用（perl语言）/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Mojo 框架基本使用（perl语言）</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux-路由器/">Linux 路由器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客/">博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统/">系统</a></li></ul>
-    </div>
-  </div>
-
-
-  
     
 
-  
     
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
-    </div>
-  </div>
+</div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2017/02/25/WebView搭配Material Design新控件使用/">WebView搭配Material Design新控件使用</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/24/解决SnackBar无动画现象/">解决SnackBar无动画现象</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/">斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/09/Mojo 框架基本使用（perl语言）/">Mojo 框架基本使用（perl语言）</a>
-          </li>
-        
-          <li>
-            <a href="/2017/01/12/Ubuntu使用Shadowsocks-qt5科学上网/">Ubuntu使用Shadowsocks-qt5科学上网</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+                
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 Mystery0 M<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+                <!-- Post Comments -->
+                
+                    
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
 <script>
-  var disqus_shortname = 'mystery0';
-  
-  var disqus_url = 'http://imystery0.cn/2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+    $('html').ready(function() {
+        setTimeout(function() {
+            var disqus_config = function () {
+                this.page.url = 'http://imystery0.cn/2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//mystery0.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        },1500);
+    });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/02/24/解决SnackBar无动画现象/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/02/09/Mojo 框架基本使用（perl语言）/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.jpg);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Mystery0 M's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        mystery0dyl520@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+            主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+    <!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+    -->
+
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">9</span></a>
+        </ul>
+    </li>
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/C/">C++<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux-路由器/">Linux 路由器<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Ubuntu/">Ubuntu<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/系统/">系统<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+    
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+  	
+        <li>
+            <a href="/about" title="关于">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于
+            </a>
+        </li>
+  	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+            文章总数
+            <span class="sidebar-badge">13</span>
+        </a>
+    </li>
+</ul>
+
+
+        <!-- Sidebar Divider -->
+        <div class="sidebar-divider"></div>
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        主题 - Material
+        <span class="sidebar-badge badge-circle">i</span>
+    </div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+    sidebar.help
+    <span class="mdl-button__ripple-container">
+      <span class="mdl-ripple"></span>
+    </span>
+  </div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+    </div>
+
+    <!-- Sidebar Sponsor -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/Mystery00dyl" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/profile.php?id=100011361983621&amp;ref=bookmarks" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.png);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://plus.google.com/109157499544556604338" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/Mystery00" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+        <a href="http://space.bilibili.com/4386572/#!/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-bilibili.png);">
+                <span class="visuallyhidden">Bilibili</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Telegram -->
+    
+        <a href="https://t.me/Mystery0" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-telegram.png);">
+                <span class="visuallyhidden">Telegram</span>
+            </button><!--
+     --></a>
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;Mystery0の小站
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
 </script>
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
-</body>
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+    <script id="dsq-count-scr" src="//mystery0.disqus.com/count.js" async></script>
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+
+                </main>
+            </div>
+        </body>
+    
 </html>

@@ -1,247 +1,833 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>C++ 数据结构（三）——队列 | Mystery0の小站</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="LinearStack.h1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798">
-<meta property="og:type" content="article">
-<meta property="og:title" content="C++ 数据结构（三）——队列">
-<meta property="og:url" content="http://imystery0.cn/2017/01/11/C++ 数据结构（三）——队列/index.html">
-<meta property="og:site_name" content="Mystery0の小站">
-<meta property="og:description" content="LinearStack.h1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798">
-<meta property="og:updated_time" content="2017-01-21T07:46:52.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++ 数据结构（三）——队列">
-<meta name="twitter:description" content="LinearStack.h1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798">
-  
-    <link rel="alternate" href="/atom.xml" title="Mystery0の小站" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.2.6 -->
 
+    <!-- Title -->
+    
+    <title>
+        
+            C++ 数据结构（三）——队列 | 
+        
+        Mystery0の小站
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Mystery0 M">
+    <meta name="description" content="要么做第一个，要么做最好的一个。">
+    <meta name="keywords" content="null">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Mystery0の小站">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://imystery0.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="C++ 数据结构（三）——队列 | Mystery0の小站">
+    <meta property="og:description" content="要么做第一个，要么做最好的一个。">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+    body, html {
+        font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    }
+
+    a {
+        color: #00838F;
+    }
+
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important;
+    }
+
+    /* Sidebar User Drop Down Menu Text Color */
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+        color: #0097A7 !important;
+    }
+
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+        color: #0097A7 !important;
+    }
+
+    .toTop {
+        background: #757575 !important;
+    }
+
+    .material-layout .material-post>.material-nav,
+    .material-layout .material-index>.material-nav,
+    .material-nav a {
+        color: #757575;
+    }
+
+    #scheme-Paradox .MD-burger-layer {
+        background-color: #757575;
+    }
+
+    #scheme-Paradox #post-toc-trigger-btn {
+        color: #757575;
+    }
+
+    .post-toc a:hover {
+        color: #00838F;
+        text-decoration: underline;
+    }
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-image: url(/img/bg.jpg);
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+
+    <script src="/js/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+    <!-- UC Browser Compatible-->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write('<link rel="stylesheet" href="/css/uc.css">');
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    <!-- Custom Head -->
+    
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Mystery0の小站</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">mystery0dyl520@gmail.com</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://imystery0.cn"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-C++ 数据结构（三）——队列" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/11/C++ 数据结构（三）——队列/" class="article-date">
-  <time datetime="2017-01-11T10:44:03.000Z" itemprop="datePublished">2017-01-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/C/">C++</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
     
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      C++ 数据结构（三）——队列
-    </h1>
-  
+        <body id="scheme-Paradox">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
 
-      </header>
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
     
-    <div class="article-entry" itemprop="articleBody">
-      
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#LinearStack-h"><span class="post-toc-number">1.</span> <span class="post-toc-text">LinearStack.h</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#NodeStack-h"><span class="post-toc-number">2.</span> <span class="post-toc-text">NodeStack.h</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                C++ 数据结构（三）——队列
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Mystery0 M</strong>
+        <span>1月 11, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=C++ 数据结构（三）——队列&url=http://imystery0.cn//2017/01/11/C++ 数据结构（三）——队列/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=C++ 数据结构（三）——队列&url=http://imystery0.cn//2017/01/11/C++ 数据结构（三）——队列/index.html&via=Mystery0 M" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://imystery0.cn//2017/01/11/C++ 数据结构（三）——队列/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://imystery0.cn//2017/01/11/C++ 数据结构（三）——队列/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Mystery0の小站&title=C++ 数据结构（三）——队列&summary=要么做第一个，要么做最好的一个。&pics=http://imystery0.cn/img/favicon.png&url=http://imystery0.cn/2017/01/11/C++ 数据结构（三）——队列/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://imystery0.cn//2017/01/11/C++ 数据结构（三）——队列/index.html&text=C++ 数据结构（三）——队列" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Telegram
+            </li>
+        </a>
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
         <h3 id="LinearStack-h"><a href="#LinearStack-h" class="headerlink" title="LinearStack.h"></a>LinearStack.h</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </div><div class="line"><span class="keyword">class</span> LinearQueue<span class="comment">//顺序队列  </span></div><div class="line">&#123;  </div><div class="line"><span class="keyword">private</span>:  </div><div class="line">    <span class="keyword">int</span> size;  </div><div class="line">    <span class="keyword">int</span> front;<span class="comment">//开始的位置  </span></div><div class="line">    <span class="keyword">int</span> rear;<span class="comment">//结束的位置  </span></div><div class="line">    T *data;  </div><div class="line"><span class="keyword">public</span>:  </div><div class="line">    LinearQueue(<span class="keyword">int</span> size)  </div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">this</span>-&gt;size = size+<span class="number">1</span>;  </div><div class="line">        <span class="keyword">this</span>-&gt;front = <span class="number">0</span>;  </div><div class="line">        <span class="keyword">this</span>-&gt;rear = <span class="number">1</span>;  </div><div class="line">        data = <span class="keyword">new</span> T[<span class="keyword">this</span>-&gt;size];<span class="comment">//动态申请空间，浪费一个空间用来判断是否队满  </span></div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    ~LinearQueue()  </div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">delete</span>[] data;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Creat</span><span class="params">(T newData[], <span class="keyword">int</span> length)</span><span class="comment">//批量创建  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (length &gt; size || length &lt;= <span class="number">0</span>)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Length error!!!!"</span>);  </div><div class="line">            <span class="keyword">return</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">this</span>-&gt;rear = length;  </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)  </div><div class="line">        &#123;  </div><div class="line">            data[i] = newData[i];  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">EnQueue</span><span class="params">(T newData)</span><span class="comment">//入队，队尾操作  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (isFull())  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Over Up!!!"</span>);  </div><div class="line">            <span class="keyword">return</span>;  </div><div class="line">        &#125;  </div><div class="line">        data[rear] = newData;  </div><div class="line">        rear = (rear + <span class="number">1</span>) % size;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function">T <span class="title">DeQueue</span><span class="params">()</span><span class="comment">//出队，队头操作  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (isEmpty())  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Over Bottom!!!"</span>);  </div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;  </div><div class="line">        &#125;  </div><div class="line">        T temp = data[front];  </div><div class="line">        front = (front + <span class="number">1</span>) % size;  </div><div class="line">        <span class="keyword">return</span> temp;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isFull</span><span class="params">()</span><span class="comment">//判断是否为满  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> ((rear + <span class="number">1</span>) % size == front)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span><span class="comment">//判断是否为空  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> ((front + <span class="number">1</span>) % size == rear)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function">T <span class="title">GetTop</span><span class="params">()</span><span class="comment">//获取队头元素  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (isEmpty())  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Over Bottom!!!"</span>);  </div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> data[rear - <span class="number">1</span>];  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PrintList</span><span class="params">()</span><span class="comment">//输出整张表  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">int</span> length;  </div><div class="line">        <span class="keyword">if</span> (front &gt; rear)  </div><div class="line">        &#123;  </div><div class="line">            length = rear + size - front;  </div><div class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"size="</span> &lt;&lt; size<span class="number">-1</span> &lt;&lt; <span class="string">" length="</span> &lt;&lt; length &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = front; i &lt; size; i++)  </div><div class="line">            &#123;  </div><div class="line">                <span class="built_in">cout</span> &lt;&lt; data[i] &lt;&lt; <span class="string">" "</span>;  </div><div class="line">            &#125;  </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rear; i++)  </div><div class="line">            &#123;  </div><div class="line">                <span class="built_in">cout</span> &lt;&lt; data[i] &lt;&lt; <span class="string">" "</span>;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">else</span>  </div><div class="line">        &#123;  </div><div class="line">            length = rear - front;  </div><div class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"size="</span> &lt;&lt; size<span class="number">-1</span> &lt;&lt; <span class="string">" length="</span> &lt;&lt; length &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = front; i &lt; rear; i++)  </div><div class="line">            &#123;  </div><div class="line">                <span class="built_in">cout</span> &lt;&lt; data[i] &lt;&lt; <span class="string">" "</span>;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">    &#125;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <h3 id="NodeStack-h"><a href="#NodeStack-h" class="headerlink" title="NodeStack.h"></a>NodeStack.h</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </div><div class="line"><span class="keyword">struct</span> Node_Queue<span class="comment">//结点  </span></div><div class="line">&#123;  </div><div class="line">    T data;  </div><div class="line">    Node_Queue *next;  </div><div class="line">&#125;;  </div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </div><div class="line"><span class="keyword">class</span> NodeQueue  </div><div class="line">&#123;  </div><div class="line"><span class="keyword">private</span>:  </div><div class="line">    Node_Queue&lt;T&gt; *front;<span class="comment">//队头指针  </span></div><div class="line">    Node_Queue&lt;T&gt; *rear;<span class="comment">//队尾指针  </span></div><div class="line">    <span class="keyword">int</span> length;<span class="comment">//长度  </span></div><div class="line"><span class="keyword">public</span>:  </div><div class="line">    NodeQueue()  </div><div class="line">    &#123;  </div><div class="line">        Node_Queue&lt;T&gt; *n = <span class="keyword">new</span> Node_Queue&lt;T&gt;;  </div><div class="line">        n-&gt;next = <span class="literal">NULL</span>;  </div><div class="line">        front = rear = n;  </div><div class="line">        length = <span class="number">0</span>;  </div><div class="line">    &#125;  </div><div class="line">    ~NodeQueue()  </div><div class="line">    &#123;  </div><div class="line">        Node_Queue&lt;T&gt; *temp;  </div><div class="line">        <span class="keyword">while</span> (front-&gt;next-&gt;next != <span class="literal">NULL</span>)  </div><div class="line">        &#123;  </div><div class="line">            temp = front-&gt;next;  </div><div class="line">            <span class="keyword">delete</span> front;  </div><div class="line">            front = temp;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Creat</span><span class="params">(T *newData,<span class="keyword">int</span> length)</span><span class="comment">//批量创建，多次调用入队方法  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)  </div><div class="line">        &#123;  </div><div class="line">            EnQueue(newData[i]);  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">EnQueue</span><span class="params">(T newData)</span><span class="comment">//入队  </span></span></div><div class="line">    &#123;  </div><div class="line">        Node_Queue&lt;T&gt; *temp = <span class="keyword">new</span> Node_Queue&lt;T&gt;;  </div><div class="line">        temp-&gt;data = newData;  </div><div class="line">        temp-&gt;next = <span class="literal">NULL</span>;  </div><div class="line">        rear-&gt;next = temp;  </div><div class="line">        rear = temp;  </div><div class="line">        length++;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function">T <span class="title">DeQueue</span><span class="params">()</span><span class="comment">//出队  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (front-&gt;next-&gt;next == <span class="literal">NULL</span>)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Over Bottom!!!"</span>);  </div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;  </div><div class="line">        &#125;  </div><div class="line">        Node_Queue&lt;T&gt; *temp = front-&gt;next;  </div><div class="line">        front-&gt;next = temp-&gt;next;  </div><div class="line">        length--;  </div><div class="line">        T t = temp-&gt;data;  </div><div class="line">        <span class="keyword">delete</span> temp;  </div><div class="line">        <span class="keyword">return</span> t;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function">T <span class="title">GetTop</span><span class="params">()</span><span class="comment">//获取栈顶元素  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (isEmpty())  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Over Bottom!!!"</span>);  </div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> front-&gt;next-&gt;data;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span><span class="comment">//判断是否为空  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (front-&gt;next == rear)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PrintList</span><span class="params">()</span><span class="comment">//输出  </span></span></div><div class="line">    &#123;  </div><div class="line">        Node_Queue&lt;T&gt; *temp=front-&gt;next;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"size="</span> &lt;&lt; length &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">        <span class="keyword">while</span> (temp != <span class="literal">NULL</span>)  </div><div class="line">        &#123;  </div><div class="line">            <span class="built_in">cout</span> &lt;&lt; temp-&gt;data &lt;&lt; <span class="string">" "</span>;  </div><div class="line">            temp = temp-&gt;next;  </div><div class="line">        &#125;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">    &#125;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>队列的特点是在一端进行插入操作，另一端进行输出操作，因此使用两个int值（或指针）来表示队头和队尾。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://imystery0.cn/2017/01/11/C++ 数据结构（三）——队列/" data-id="cizl61qcb0002ygnto5y3e44x" class="article-share-link">Share</a>
-      
-        <a href="http://imystery0.cn/2017/01/11/C++ 数据结构（三）——队列/#disqus_thread" class="article-comment-link">留言</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/01/11/C++ 数据结构（四）——二叉树/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          C++ 数据结构（四）——二叉树
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/01/11/C++ 数据结构（二）——栈/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">C++ 数据结构（二）——栈</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux-路由器/">Linux 路由器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客/">博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统/">系统</a></li></ul>
-    </div>
-  </div>
-
-
-  
     
 
-  
     
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
-    </div>
-  </div>
+</div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2017/02/25/WebView搭配Material Design新控件使用/">WebView搭配Material Design新控件使用</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/24/解决SnackBar无动画现象/">解决SnackBar无动画现象</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/">斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/09/Mojo 框架基本使用（perl语言）/">Mojo 框架基本使用（perl语言）</a>
-          </li>
-        
-          <li>
-            <a href="/2017/01/12/Ubuntu使用Shadowsocks-qt5科学上网/">Ubuntu使用Shadowsocks-qt5科学上网</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+                
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 Mystery0 M<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+                <!-- Post Comments -->
+                
+                    
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
 <script>
-  var disqus_shortname = 'mystery0';
-  
-  var disqus_url = 'http://imystery0.cn/2017/01/11/C++ 数据结构（三）——队列/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+    $('html').ready(function() {
+        setTimeout(function() {
+            var disqus_config = function () {
+                this.page.url = 'http://imystery0.cn/2017/01/11/C++ 数据结构（三）——队列/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//mystery0.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        },1500);
+    });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/01/11/C++ 数据结构（四）——二叉树/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/01/11/C++ 数据结构（二）——栈/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.jpg);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Mystery0 M's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        mystery0dyl520@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+            主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+    <!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+    -->
+
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">9</span></a>
+        </ul>
+    </li>
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/C/">C++<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux-路由器/">Linux 路由器<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Ubuntu/">Ubuntu<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/系统/">系统<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+    
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+  	
+        <li>
+            <a href="/about" title="关于">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于
+            </a>
+        </li>
+  	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+            文章总数
+            <span class="sidebar-badge">13</span>
+        </a>
+    </li>
+</ul>
+
+
+        <!-- Sidebar Divider -->
+        <div class="sidebar-divider"></div>
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        主题 - Material
+        <span class="sidebar-badge badge-circle">i</span>
+    </div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+    sidebar.help
+    <span class="mdl-button__ripple-container">
+      <span class="mdl-ripple"></span>
+    </span>
+  </div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+    </div>
+
+    <!-- Sidebar Sponsor -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/Mystery00dyl" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/profile.php?id=100011361983621&amp;ref=bookmarks" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.png);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://plus.google.com/109157499544556604338" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/Mystery00" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+        <a href="http://space.bilibili.com/4386572/#!/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-bilibili.png);">
+                <span class="visuallyhidden">Bilibili</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Telegram -->
+    
+        <a href="https://t.me/Mystery0" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-telegram.png);">
+                <span class="visuallyhidden">Telegram</span>
+            </button><!--
+     --></a>
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;Mystery0の小站
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
 </script>
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
-</body>
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+    <script id="dsq-count-scr" src="//mystery0.disqus.com/count.js" async></script>
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+
+                </main>
+            </div>
+        </body>
+    
 </html>
