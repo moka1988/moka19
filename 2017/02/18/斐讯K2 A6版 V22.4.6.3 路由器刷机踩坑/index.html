@@ -24,10 +24,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0097A7">
+    <meta name="theme-color" content="#03A9F4">
     <meta name="author" content="Mystery0 M">
     <meta name="description" content="要么做第一个，要么做最好的一个。">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="Mystery0">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -83,13 +83,13 @@
   #scheme-Paradox .sidebar_archives-count,
   #scheme-Paradox .sidebar-colored .sidebar-header,
   #scheme-Paradox .sidebar-colored .sidebar-badge{
-    background-color: #0097A7 !important;
+    background-color: #03A9F4 !important;
   }
 
   /* Sidebar User Drop Down Menu Text Color */
   #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
   #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-    color: #0097A7 !important;
+    color: #03A9F4 !important;
   }
 
   #post_entry-right-info,
@@ -102,7 +102,7 @@
   .sidebar-colored .sidebar-nav > .open > a:hover,
   .sidebar-colored .sidebar-nav > .open > a:focus,
   #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-    color: #0097A7 !important;
+    color: #03A9F4 !important;
   }
 
   .toTop {
@@ -298,6 +298,15 @@
     -->
 
     <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAADkElEQVR42u3aS04kMRAFQO5/6ZktEkPzXqZN9UjhVQuq7XKwSPLz8cf6tD4Q4MCBAwcOHDhw4MDxxhwf8fr6/OeffPf59T7/eLkvT74+ZXMXHDhw4MBxj+OHUBRzJFdKyFrE2V1w4MCBA8dtjuQlkrCah8w8PEchs7wLDhw4cOB4B47XTyZB+vWTyfsk++PAgQMHjv+FIy/q5eXFJAzP3hMHDhw4cDzLURTUyrJdW3acnfhArRQHDhw4cBwaaHjnzw/Md+DAgQMHjkMrT8zaPfOy44ETceDAgQPHUY6kpZS3f/KC4KyM2JYUo+QQBw4cOHAc5ZiV9tpRhlONqH05Mvq/AwcOHDhwHOXIx53bUJpf9Ww698N3ceDAgQPHBY5k63tX2iC2xcq67YQDBw4cOEqOJJSe+m0+KpHsM2t94cCBAweO2xxt0W1/+STxa9tIbWMMBw4cOHA8yzELcnkytkkO92kkDhw4cOA4y5GPo+1HE3LEzRBDXtbEgQMHDhw3OPbFvk0yNmtQnRrOxoEDBw4cNzjycbS2RHj4pcvdirvgwIEDB45rHHnpLX8+TwXzplfybgkoDhw4cOC4wTELt5si4H4kLm9ERQN5OHDgwIHjAsesmZQPUucnbgbs8v1x4MCBA8fvcCRlu/2YQht026ZXcgoOHDhw4LjHMXu5DVxeTMxZ26EKHDhw4MBxj2NWyGvHDm5cPvljrCYHceDAgQPHgqMtDrYtov3wRD6g0KajOHDgwIHjLMfsmNmIW1tMbIctknAbTQ7iwIEDB44FRz6y0L5WPqyWJ5MzxGFGiwMHDhw4DnHkAwT7oYdVuyi56qbthAMHDhw41gMNs03zgJrAJc2nWamxyGhx4MCBA8eaIw+HOdAsYZuldqt2FA4cOHDguMDRhrdZu2g2SNe2oPK74MCBAweO3+GYNXJmP09C5qy8WHDjwIEDB45rHJvkKlmzE/Pd2oYZDhw4cOC4wdGuPHy2Bb6caXNWNN+BAwcOHDgWHLMwuQ/AbaOrbVzhwIEDB45nOTZHts2qPGTmV03+GEVGiwMHDhw4DnEMi2uL9lKbCranREVJHDhw4MDxZhztCF0eINvvDkMyDhw4cOB4lGNWWEzC56bMl9ziSgqHAwcOHDjWxcHZM5vhuTZFbMMtDhw4cOC4wTEbaMgbSMlqz20Tv2+/iwMHDhw4jnJYOHDgwIEDBw4cOHDgeLP1F68zL+BwQFYDAAAAAElFTkSuQmCC">
+        </ul>
     
 
     <!-- Tags (bookmark) -->
@@ -603,6 +612,14 @@
 
     <!-- Article Number  -->
     
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">13</span>
+            </a>
+        </li>
+        
+    
 </ul>
 
 
@@ -648,6 +665,12 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Feedback -->
 <!--
+
+    <a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        sidebar.feedback
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+    </a>
 
 -->
 
@@ -815,6 +838,8 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
+    <script src="/js/smoothscroll.js"></script>
+
 
 
 
@@ -835,6 +860,106 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Local Search-->
+
+    <script>
+    var searchFunc = function(path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: 'xml',
+            success: function( xmlResponse ) {
+                // get the contents from search data
+                var datas = $( 'entry', xmlResponse ).map(function() {
+                    return {
+                        title: $( 'title', this ).text(),
+                        content: $('content',this).text(),
+                        url: $( 'url' , this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function() {
+                    var str='<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = '';
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function(data) {
+                        var isMatch = true;
+                        var content_index = [];
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g,'').toLowerCase();
+                        var data_url = data.url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if(data_title !== '' && data_content !== '') {
+                            keywords.forEach(function(keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if( index_title < 0 && index_content < 0 ) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += '<li><a href="'+ data_url +'" class="search-result-title" target="_blank">'+ data_title;
+                            var content = data.content.trim().replace(/<[^>]+>/g, '');
+                            if (first_occur >= 0) {
+                                // cut out characters
+                                var start = first_occur - 6;
+                                var end = first_occur + 6;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 10;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, 'gi');
+                                    match_content = match_content.replace(regS, '<em class="search-keyword">'+keyword+'</em>');
+                                })
+                                str += '<p class="search-result">' + match_content + '...</p>' +'</a>';
+                            }
+                        }
+                    });
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    }
+</script>
+
+
+    <script>
+        var inputArea = document.querySelector('#search');
+        var getSearchFile = function() {
+            var path = 'search.xml';
+            searchFunc(path, 'search', 'local-search-result');
+        }
+
+        if(inputArea) {
+            inputArea.onfocus = function() {
+                getSearchFile();
+            }
+        }
+    </script>
 
 
 <!-- Window Load-->
