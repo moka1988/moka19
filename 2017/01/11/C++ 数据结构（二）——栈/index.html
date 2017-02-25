@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C++ 数据结构（二）——栈 | Mystery0の小站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LinearStack.h12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788template &amp;lt;typenam">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 数据结构（二）——栈">
+<meta property="og:url" content="http://imystery0.cn/2017/01/11/C++ 数据结构（二）——栈/index.html">
+<meta property="og:site_name" content="Mystery0の小站">
+<meta property="og:description" content="LinearStack.h12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788template &amp;lt;typenam">
+<meta property="og:updated_time" content="2017-01-21T07:46:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ 数据结构（二）——栈">
+<meta name="twitter:description" content="LinearStack.h12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788template &amp;lt;typenam">
+  
+    <link rel="alternate" href="/atom.xml" title="Mystery0の小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Mystery0の小站</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">mystery0dyl520@gmail.com</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://imystery0.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C++ 数据结构（二）——栈" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/11/C++ 数据结构（二）——栈/" class="article-date">
+  <time datetime="2017-01-11T10:44:02.000Z" itemprop="datePublished">2017-01-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++ 数据结构（二）——栈
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="LinearStack-h"><a href="#LinearStack-h" class="headerlink" title="LinearStack.h"></a>LinearStack.h</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </div><div class="line"><span class="keyword">class</span> LinearStack<span class="comment">//顺序栈  </span></div><div class="line">&#123;  </div><div class="line"><span class="keyword">private</span>:  </div><div class="line">    <span class="keyword">int</span> size;<span class="comment">//栈的控件  </span></div><div class="line">    <span class="keyword">int</span> length;<span class="comment">//当前存放数据长度  </span></div><div class="line">    T *data;  </div><div class="line"><span class="keyword">public</span>:  </div><div class="line">    LinearStack(<span class="keyword">int</span> size)  </div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">this</span>-&gt;size = size;  </div><div class="line">        <span class="keyword">this</span>-&gt;length = <span class="number">0</span>;  </div><div class="line">        data = <span class="keyword">new</span> T[size];  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    ~LinearStack()  </div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">delete</span>[] data;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Creat</span><span class="params">(T newData[], <span class="keyword">int</span> length)</span><span class="comment">//批量创建  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (length &gt; size || length &lt;= <span class="number">0</span>)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Length error!!!!"</span>);  </div><div class="line">            <span class="keyword">return</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">this</span>-&gt;length = length;  </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)  </div><div class="line">        &#123;  </div><div class="line">            data[i] = newData[i];  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(T newData)</span><span class="comment">//入栈  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (isFull())  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Over Up!!!"</span>);  </div><div class="line">            <span class="keyword">return</span>;  </div><div class="line">        &#125;  </div><div class="line">        data[length++] = newData;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function">T <span class="title">Pop</span><span class="params">()</span><span class="comment">//出栈  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (isEmpty())  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Over Bottom!!!"</span>);  </div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> data[--length];  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function">T <span class="title">GetTop</span><span class="params">()</span><span class="comment">//返回栈顶元素  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">return</span> data[length - <span class="number">1</span>];  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span><span class="comment">//判断是否栈空  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (length == <span class="number">0</span>)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isFull</span><span class="params">()</span><span class="comment">//判断是否栈满  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (length == size)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PrintList</span><span class="params">()</span><span class="comment">//输出  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"size="</span> &lt;&lt; size &lt;&lt; <span class="string">" length="</span> &lt;&lt; length &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)  </div><div class="line">        &#123;  </div><div class="line">            <span class="built_in">cout</span> &lt;&lt; data[i] &lt;&lt; <span class="string">" "</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">    &#125;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="NodeStack-h"><a href="#NodeStack-h" class="headerlink" title="NodeStack.h"></a>NodeStack.h</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </div><div class="line"><span class="keyword">struct</span> Node_Stack<span class="comment">//结点  </span></div><div class="line">&#123;  </div><div class="line">    T data;  </div><div class="line">    Node_Stack *next;  </div><div class="line">&#125;;  </div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </div><div class="line"><span class="keyword">class</span> NodeStack  </div><div class="line">&#123;  </div><div class="line"><span class="keyword">private</span>:  </div><div class="line">    <span class="keyword">int</span> length;<span class="comment">//链栈长度  </span></div><div class="line">    Node_Stack&lt;T&gt; *head;  </div><div class="line"><span class="keyword">public</span>:  </div><div class="line">    NodeStack()  </div><div class="line">    &#123;  </div><div class="line">        head = <span class="keyword">new</span> Node_Stack&lt;T&gt;;  </div><div class="line">        length = <span class="number">0</span>;  </div><div class="line">        head-&gt;next = <span class="literal">NULL</span>;  </div><div class="line">        head-&gt;data = <span class="literal">NULL</span>;<span class="comment">//初始化头结点  </span></div><div class="line">    &#125;  </div><div class="line">    ~NodeStack()  </div><div class="line">    &#123;  </div><div class="line">        Node_Stack&lt;T&gt; *m;  </div><div class="line">        Node_Stack&lt;T&gt; *n;  </div><div class="line">        m = head-&gt;next;  </div><div class="line">        <span class="keyword">while</span> (m != <span class="literal">NULL</span>)  </div><div class="line">        &#123;  </div><div class="line">            n = m-&gt;next;  </div><div class="line">            <span class="keyword">delete</span> m;  </div><div class="line">            m = n;  </div><div class="line">        &#125;  </div><div class="line">        head-&gt;next = <span class="literal">NULL</span>;  </div><div class="line">        head-&gt;data = <span class="literal">NULL</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Creat</span><span class="params">(T *newData, <span class="keyword">int</span> length)</span><span class="comment">//批量创建  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (length &lt; <span class="number">0</span>)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Length Error!!!"</span>);  </div><div class="line">            <span class="keyword">return</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">this</span>-&gt;length = length;  </div><div class="line">        Node_Stack&lt;T&gt; *m;  </div><div class="line">        m = head;  </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)  </div><div class="line">        &#123;  </div><div class="line">            Node_Stack&lt;T&gt; *n = <span class="keyword">new</span> Node_Stack&lt;T&gt;;  </div><div class="line">            n-&gt;data = newData[i];  </div><div class="line">            m-&gt;next = n;  </div><div class="line">            m = m-&gt;next;  </div><div class="line">        &#125;  </div><div class="line">        m-&gt;next = <span class="literal">NULL</span>;  </div><div class="line">        m = <span class="literal">NULL</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(T newData)</span><span class="comment">//入栈，直接在头结点处操作  </span></span></div><div class="line">    &#123;  </div><div class="line">        Node_Stack&lt;T&gt; *n=<span class="keyword">new</span> Node_Stack&lt;T&gt;;  </div><div class="line">        n-&gt;next = head-&gt;next;  </div><div class="line">        n-&gt;data = newData;  </div><div class="line">        head-&gt;next = n;  </div><div class="line">        length++;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function">T <span class="title">Pop</span><span class="params">()</span><span class="comment">//出栈  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (isEmpty())  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"List is empty!!!"</span>);  </div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;  </div><div class="line">        &#125;  </div><div class="line">        Node_Stack&lt;T&gt; *temp = head-&gt;next;  </div><div class="line">        head-&gt;next = temp-&gt;next;  </div><div class="line">        length--;  </div><div class="line">        T t = temp-&gt;data;<span class="comment">//将栈顶元素保存到temp中，然后删除栈顶元素  </span></div><div class="line">        <span class="keyword">delete</span> temp;  </div><div class="line">        <span class="keyword">return</span> t;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span><span class="comment">//判断是否为空  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (length == <span class="number">0</span>)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function">T <span class="title">GetTop</span><span class="params">()</span><span class="comment">//获取栈顶元素  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (isEmpty())  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"List i Empty!!!"</span>);  </div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> head-&gt;next-&gt;data;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PrintList</span><span class="params">()</span><span class="comment">//输出  </span></span></div><div class="line">    &#123;  </div><div class="line">        Node_Stack&lt;T&gt; *m;  </div><div class="line">        m = head-&gt;next;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"size="</span> &lt;&lt; length &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">        <span class="keyword">for</span> (; m != <span class="literal">NULL</span>; m = m-&gt;next)  </div><div class="line">        &#123;  </div><div class="line">            <span class="built_in">cout</span> &lt;&lt; m-&gt;data &lt;&lt; <span class="string">" "</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">    &#125;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>正如上一篇文章所讲的，栈就是在线性表的基础上添加了一个只能在栈顶操作元素的约束条件。整个代码大多数都是和线性表完全相同，所以写出了线性表，写栈就很简单。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://imystery0.cn/2017/01/11/C++ 数据结构（二）——栈/" data-id="cizl5z9ms0004r0nttuw7mi5m" class="article-share-link">Share</a>
+      
+        <a href="http://imystery0.cn/2017/01/11/C++ 数据结构（二）——栈/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/11/C++ 数据结构（三）——队列/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++ 数据结构（三）——队列
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/11/C++ 数据结构（一）——线性表/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++ 数据结构（一）——线性表</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux-路由器/">Linux 路由器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客/">博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统/">系统</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/02/25/WebView搭配Material Design新控件使用/">WebView搭配Material Design新控件使用</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/24/解决SnackBar无动画现象/">解决SnackBar无动画现象</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/">斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/09/Mojo 框架基本使用（perl语言）/">Mojo 框架基本使用（perl语言）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/12/Ubuntu使用Shadowsocks-qt5科学上网/">Ubuntu使用Shadowsocks-qt5科学上网</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Mystery0 M<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'mystery0';
+  
+  var disqus_url = 'http://imystery0.cn/2017/01/11/C++ 数据结构（二）——栈/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
