@@ -182,7 +182,7 @@
 
     <!-- Custom Head -->
     
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 
     
@@ -460,7 +460,7 @@ cp -rf /tmp/hexo/* /var/www/hexo
 <pre><code>chown git:git -R /home/git/hexo.git
 chown git:git -R /tmp/hexo
 </code></pre><h4 id="7-配置nginx"><a href="#7-配置nginx" class="headerlink" title="7.配置nginx"></a><strong>7.配置nginx</strong></h4><p>root用户下执行：</p>
-<pre><code>vim /etc/nginx/sites-available/default
+<pre><code> vim /etc/nginx/sites-available/default
 </code></pre><p>找到<code>root /var/www/html;</code><br>将其修改为：</p>
 <pre><code>root /var/www/hexo;
 </code></pre><p>保存并退出。<br><img src="https://raw.githubusercontent.com/Mystery00/Hexo_Post/master/img/2017-01-11-15-04-36.png" alt=""><br>重启nginx</p>
