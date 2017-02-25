@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
     <head>
-    <!--
+    <!-- 
         © Material Theme
         https://github.com/viosey/hexo-theme-material
-        Version: 1.2.6 -->
+        Version: 1.3.0 -->
 
     <!-- Title -->
     
@@ -50,6 +50,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="C++ 数据结构（三）——队列 | Mystery0の小站">
     <meta property="og:description" content="要么做第一个，要么做最好的一个。">
+    
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -67,74 +68,74 @@
 
 <!-- Other Styles -->
 <style>
-    body, html {
-        font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-    }
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
 
-    a {
-        color: #00838F;
-    }
+  a {
+    color: #00838F;
+  }
 
-    .mdl-card__media,
-    #search-label,
-    #search-form-label:after,
-    #scheme-Paradox .hot_tags-count,
-    #scheme-Paradox .sidebar_archives-count,
-    #scheme-Paradox .sidebar-colored .sidebar-header,
-    #scheme-Paradox .sidebar-colored .sidebar-badge{
-        background-color: #0097A7 !important;
-    }
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
 
-    /* Sidebar User Drop Down Menu Text Color */
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-        color: #0097A7 !important;
-    }
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
 
-    #post_entry-right-info,
-    .sidebar-colored .sidebar-nav li:hover > a,
-    .sidebar-colored .sidebar-nav li:hover > a i,
-    .sidebar-colored .sidebar-nav li > a:hover,
-    .sidebar-colored .sidebar-nav li > a:hover i,
-    .sidebar-colored .sidebar-nav li > a:focus i,
-    .sidebar-colored .sidebar-nav > .open > a,
-    .sidebar-colored .sidebar-nav > .open > a:hover,
-    .sidebar-colored .sidebar-nav > .open > a:focus,
-    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-        color: #0097A7 !important;
-    }
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
 
-    .toTop {
-        background: #757575 !important;
-    }
+  .toTop {
+    background: #757575 !important;
+  }
 
-    .material-layout .material-post>.material-nav,
-    .material-layout .material-index>.material-nav,
-    .material-nav a {
-        color: #757575;
-    }
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
 
-    #scheme-Paradox .MD-burger-layer {
-        background-color: #757575;
-    }
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
 
-    #scheme-Paradox #post-toc-trigger-btn {
-        color: #757575;
-    }
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
 
-    .post-toc a:hover {
-        color: #00838F;
-        text-decoration: underline;
-    }
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
 </style>
 
 
 <!-- Theme Background Related-->
 
     <style>
-        body{
-            background-image: url(/img/bg.jpg);
-        }
+      body{
+        background-image: url(/img/bg.jpg);
+      }
     </style>
 
 
@@ -143,34 +144,41 @@
 <!-- Fade Effect -->
 
     <style>
-        .fade {
-            transition: all 800ms linear;
-            -webkit-transform: translate3d(0,0,0);
-            -moz-transform: translate3d(0,0,0);
-            -ms-transform: translate3d(0,0,0);
-            -o-transform: translate3d(0,0,0);
-            transform: translate3d(0,0,0);
-            opacity: 1;
-        }
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
 
-        .fade.out{
-            opacity: 0;
-        }
+      .fade.out{
+        opacity: 0;
+      }
     </style>
 
 
+
     <script src="/js/jquery.min.js"></script>
+    <script src="/js/queue.js"></script>
 
-    <link rel="stylesheet" href="/css/highlight/solarized-white.css">
-
-    <!-- UC Browser Compatible-->
+    <!-- UC Browser Compatible -->
     <script>
         var agent = navigator.userAgent.toLowerCase();
         if(agent.indexOf('ucbrowser')>0) {
-            document.write('<link rel="stylesheet" href="/css/uc.css">');
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
             alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
         }
     </script>
+
+    
+
+    
+
+    <!-- Bing Background -->
+    
 
     <!-- Custom Head -->
     
@@ -178,7 +186,7 @@
 
 
     
-        <body id="scheme-Paradox">
+        <body id="scheme-Paradox" class="lazy">
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
@@ -379,7 +387,7 @@
                 
 
                 <!-- Post Content -->
-                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <h3 id="LinearStack-h"><a href="#LinearStack-h" class="headerlink" title="LinearStack.h"></a>LinearStack.h</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </div><div class="line"><span class="keyword">class</span> LinearQueue<span class="comment">//顺序队列  </span></div><div class="line">&#123;  </div><div class="line"><span class="keyword">private</span>:  </div><div class="line">    <span class="keyword">int</span> size;  </div><div class="line">    <span class="keyword">int</span> front;<span class="comment">//开始的位置  </span></div><div class="line">    <span class="keyword">int</span> rear;<span class="comment">//结束的位置  </span></div><div class="line">    T *data;  </div><div class="line"><span class="keyword">public</span>:  </div><div class="line">    LinearQueue(<span class="keyword">int</span> size)  </div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">this</span>-&gt;size = size+<span class="number">1</span>;  </div><div class="line">        <span class="keyword">this</span>-&gt;front = <span class="number">0</span>;  </div><div class="line">        <span class="keyword">this</span>-&gt;rear = <span class="number">1</span>;  </div><div class="line">        data = <span class="keyword">new</span> T[<span class="keyword">this</span>-&gt;size];<span class="comment">//动态申请空间，浪费一个空间用来判断是否队满  </span></div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    ~LinearQueue()  </div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">delete</span>[] data;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Creat</span><span class="params">(T newData[], <span class="keyword">int</span> length)</span><span class="comment">//批量创建  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (length &gt; size || length &lt;= <span class="number">0</span>)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Length error!!!!"</span>);  </div><div class="line">            <span class="keyword">return</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">this</span>-&gt;rear = length;  </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)  </div><div class="line">        &#123;  </div><div class="line">            data[i] = newData[i];  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">EnQueue</span><span class="params">(T newData)</span><span class="comment">//入队，队尾操作  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (isFull())  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Over Up!!!"</span>);  </div><div class="line">            <span class="keyword">return</span>;  </div><div class="line">        &#125;  </div><div class="line">        data[rear] = newData;  </div><div class="line">        rear = (rear + <span class="number">1</span>) % size;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function">T <span class="title">DeQueue</span><span class="params">()</span><span class="comment">//出队，队头操作  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (isEmpty())  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Over Bottom!!!"</span>);  </div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;  </div><div class="line">        &#125;  </div><div class="line">        T temp = data[front];  </div><div class="line">        front = (front + <span class="number">1</span>) % size;  </div><div class="line">        <span class="keyword">return</span> temp;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isFull</span><span class="params">()</span><span class="comment">//判断是否为满  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> ((rear + <span class="number">1</span>) % size == front)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span><span class="comment">//判断是否为空  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> ((front + <span class="number">1</span>) % size == rear)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function">T <span class="title">GetTop</span><span class="params">()</span><span class="comment">//获取队头元素  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (isEmpty())  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Over Bottom!!!"</span>);  </div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> data[rear - <span class="number">1</span>];  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PrintList</span><span class="params">()</span><span class="comment">//输出整张表  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">int</span> length;  </div><div class="line">        <span class="keyword">if</span> (front &gt; rear)  </div><div class="line">        &#123;  </div><div class="line">            length = rear + size - front;  </div><div class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"size="</span> &lt;&lt; size<span class="number">-1</span> &lt;&lt; <span class="string">" length="</span> &lt;&lt; length &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = front; i &lt; size; i++)  </div><div class="line">            &#123;  </div><div class="line">                <span class="built_in">cout</span> &lt;&lt; data[i] &lt;&lt; <span class="string">" "</span>;  </div><div class="line">            &#125;  </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rear; i++)  </div><div class="line">            &#123;  </div><div class="line">                <span class="built_in">cout</span> &lt;&lt; data[i] &lt;&lt; <span class="string">" "</span>;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">else</span>  </div><div class="line">        &#123;  </div><div class="line">            length = rear - front;  </div><div class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"size="</span> &lt;&lt; size<span class="number">-1</span> &lt;&lt; <span class="string">" length="</span> &lt;&lt; length &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = front; i &lt; rear; i++)  </div><div class="line">            &#123;  </div><div class="line">                <span class="built_in">cout</span> &lt;&lt; data[i] &lt;&lt; <span class="string">" "</span>;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">    &#125;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <h3 id="NodeStack-h"><a href="#NodeStack-h" class="headerlink" title="NodeStack.h"></a>NodeStack.h</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </div><div class="line"><span class="keyword">struct</span> Node_Queue<span class="comment">//结点  </span></div><div class="line">&#123;  </div><div class="line">    T data;  </div><div class="line">    Node_Queue *next;  </div><div class="line">&#125;;  </div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </div><div class="line"><span class="keyword">class</span> NodeQueue  </div><div class="line">&#123;  </div><div class="line"><span class="keyword">private</span>:  </div><div class="line">    Node_Queue&lt;T&gt; *front;<span class="comment">//队头指针  </span></div><div class="line">    Node_Queue&lt;T&gt; *rear;<span class="comment">//队尾指针  </span></div><div class="line">    <span class="keyword">int</span> length;<span class="comment">//长度  </span></div><div class="line"><span class="keyword">public</span>:  </div><div class="line">    NodeQueue()  </div><div class="line">    &#123;  </div><div class="line">        Node_Queue&lt;T&gt; *n = <span class="keyword">new</span> Node_Queue&lt;T&gt;;  </div><div class="line">        n-&gt;next = <span class="literal">NULL</span>;  </div><div class="line">        front = rear = n;  </div><div class="line">        length = <span class="number">0</span>;  </div><div class="line">    &#125;  </div><div class="line">    ~NodeQueue()  </div><div class="line">    &#123;  </div><div class="line">        Node_Queue&lt;T&gt; *temp;  </div><div class="line">        <span class="keyword">while</span> (front-&gt;next-&gt;next != <span class="literal">NULL</span>)  </div><div class="line">        &#123;  </div><div class="line">            temp = front-&gt;next;  </div><div class="line">            <span class="keyword">delete</span> front;  </div><div class="line">            front = temp;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Creat</span><span class="params">(T *newData,<span class="keyword">int</span> length)</span><span class="comment">//批量创建，多次调用入队方法  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)  </div><div class="line">        &#123;  </div><div class="line">            EnQueue(newData[i]);  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">EnQueue</span><span class="params">(T newData)</span><span class="comment">//入队  </span></span></div><div class="line">    &#123;  </div><div class="line">        Node_Queue&lt;T&gt; *temp = <span class="keyword">new</span> Node_Queue&lt;T&gt;;  </div><div class="line">        temp-&gt;data = newData;  </div><div class="line">        temp-&gt;next = <span class="literal">NULL</span>;  </div><div class="line">        rear-&gt;next = temp;  </div><div class="line">        rear = temp;  </div><div class="line">        length++;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function">T <span class="title">DeQueue</span><span class="params">()</span><span class="comment">//出队  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (front-&gt;next-&gt;next == <span class="literal">NULL</span>)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Over Bottom!!!"</span>);  </div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;  </div><div class="line">        &#125;  </div><div class="line">        Node_Queue&lt;T&gt; *temp = front-&gt;next;  </div><div class="line">        front-&gt;next = temp-&gt;next;  </div><div class="line">        length--;  </div><div class="line">        T t = temp-&gt;data;  </div><div class="line">        <span class="keyword">delete</span> temp;  </div><div class="line">        <span class="keyword">return</span> t;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function">T <span class="title">GetTop</span><span class="params">()</span><span class="comment">//获取栈顶元素  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (isEmpty())  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::exception(<span class="string">"Over Bottom!!!"</span>);  </div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> front-&gt;next-&gt;data;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span><span class="comment">//判断是否为空  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (front-&gt;next == rear)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PrintList</span><span class="params">()</span><span class="comment">//输出  </span></span></div><div class="line">    &#123;  </div><div class="line">        Node_Queue&lt;T&gt; *temp=front-&gt;next;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"size="</span> &lt;&lt; length &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">        <span class="keyword">while</span> (temp != <span class="literal">NULL</span>)  </div><div class="line">        &#123;  </div><div class="line">            <span class="built_in">cout</span> &lt;&lt; temp-&gt;data &lt;&lt; <span class="string">" "</span>;  </div><div class="line">            temp = temp-&gt;next;  </div><div class="line">        &#125;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">    &#125;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
@@ -402,8 +410,7 @@
     <div id="disqus-comment">
         <div id="disqus_thread"></div>
 <script>
-    $('html').ready(function() {
-        setTimeout(function() {
+    queue.offer(function() {
             var disqus_config = function () {
                 this.page.url = 'http://imystery0.cn/2017/01/11/C++ 数据结构（三）——队列/index.html';  // Replace PAGE_URL with your page's canonical URL variable
                 this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
@@ -416,8 +423,7 @@
                 s.setAttribute('data-timestamp', + new Date());
                 (d.head || d.body).appendChild(s);
             })();
-        },1500);
-    });
+        });
 </script>
 
     </div>
@@ -427,6 +433,7 @@
             padding: 2pc;
         }
     </style>
+
 
 
                 
@@ -505,52 +512,47 @@
     <li class="dropdown">
         <ul id="settings-dropdown" class="dropdown-menu">
             
-                <li>
-                    <a href="#" target="_blank" title="Email Me">
-                        <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
-                        Email Me
-                    </a>
-                </li>
-            
         </ul>
     </li>
 
     <!-- Homepage -->
-    <li id="sidebar-first-li">
-        <a href="/" target="_self">
-            <i class="material-icons sidebar-material-icons">home</i>
-            主页
-        </a>
-    </li>
-
-    <!-- I'm Feeling Lucky -->
-    <!--
-    <li class="dropdown">
-        <a href="" target="_self">
-            <i class="material-icons sidebar-material-icons">explore</i>
-             sidebar.imlucky
-        </a>
-    </li>
-    -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
 
     <!-- Archives  -->
-    <li class="dropdown">
-        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-            <i class="material-icons sidebar-material-icons">inbox</i>
-             归档
-            <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">9</span></a>
-        </ul>
-    </li>
+                <a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">9</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Categories  -->
     
         <li class="dropdown">
             <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
                 分类
                 <b class="caret"></b>
             </a>
@@ -559,14 +561,11 @@
                 <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/C/">C++<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux-路由器/">Linux 路由器<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Ubuntu/">Ubuntu<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/系统/">系统<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
+        
     
 
-    <!-- Divider -->
-    <li class="divider"></li>
-
-
     <!-- Pages  -->
-  	
+    
         <li>
             <a href="/about" title="关于">
                 
@@ -575,20 +574,13 @@
                 关于
             </a>
         </li>
-  	
+        
+    
 
-    <!-- Article Numebr  -->
-    <li>
-        <a href="/archives">
-            文章总数
-            <span class="sidebar-badge">13</span>
-        </a>
-    </li>
+    <!-- Article Number  -->
+    
 </ul>
 
-
-        <!-- Sidebar Divider -->
-        <div class="sidebar-divider"></div>
 
         <!-- Sidebar Footer -->
         <!--
@@ -601,46 +593,54 @@ It will not impact the appearance and can give developers a lot of support :)
 它不会影响美观并可以给开发者很大的支持和动力。 :)
 -->
 
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
 <!-- Theme Material -->
-<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-        主题 - Material
-        <span class="sidebar-badge badge-circle">i</span>
-    </div>
-</a>
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
 
 <!-- Help & Support -->
 <!--
-<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-    sidebar.help
-    <span class="mdl-button__ripple-container">
-      <span class="mdl-ripple"></span>
-    </span>
-  </div>
-</a>
+
+    <a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        sidebar.help
+        <span class="mdl-button__ripple-container">
+          <span class="mdl-ripple"></span>
+        </span>
+      </div>
+    </a>
+
 -->
 
 <!-- Feedback -->
 <!--
-<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-         sidebar.feedback
-                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
-</a>
+
 -->
 
-<!-- Abount Theme -->
+<!-- About Theme -->
 <!--
-<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-         sidebar.about_theme
-        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
-</a>-->
+
+    <a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+             sidebar.about_theme
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+    </a>
+
+-->
 
     </div>
 
-    <!-- Sidebar Sponsor -->
+    <!-- Sidebar Image -->
     
 
 </aside>
@@ -764,7 +764,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
                     <!-- Import File -->
-<script src="/js/highlight.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
 <script src="/js/js.min.js"></script>
 <script src="/js/nprogress.js"></script>
 
@@ -773,18 +773,16 @@ It will not impact the appearance and can give developers a lot of support :)
         showSpinner: true
     });
     NProgress.start();
-
     $('#nprogress .bar').css({
-        'background': '#FF4081'
+        'background': '#29d'
     });
     $('#nprogress .peg').css({
-        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
     });
     $('#nprogress .spinner-icon').css({
-        'border-top-color': '#FF4081',
-        'border-left-color': '#FF4081'
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
     });
-
     setTimeout(function() {
         NProgress.done();
         $('.fade').removeClass('out');

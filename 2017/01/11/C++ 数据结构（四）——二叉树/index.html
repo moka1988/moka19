@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
     <head>
-    <!--
+    <!-- 
         © Material Theme
         https://github.com/viosey/hexo-theme-material
-        Version: 1.2.6 -->
+        Version: 1.3.0 -->
 
     <!-- Title -->
     
@@ -50,6 +50,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="C++ 数据结构（四）——二叉树 | Mystery0の小站">
     <meta property="og:description" content="要么做第一个，要么做最好的一个。">
+    
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -67,74 +68,74 @@
 
 <!-- Other Styles -->
 <style>
-    body, html {
-        font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-    }
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
 
-    a {
-        color: #00838F;
-    }
+  a {
+    color: #00838F;
+  }
 
-    .mdl-card__media,
-    #search-label,
-    #search-form-label:after,
-    #scheme-Paradox .hot_tags-count,
-    #scheme-Paradox .sidebar_archives-count,
-    #scheme-Paradox .sidebar-colored .sidebar-header,
-    #scheme-Paradox .sidebar-colored .sidebar-badge{
-        background-color: #0097A7 !important;
-    }
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
 
-    /* Sidebar User Drop Down Menu Text Color */
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-        color: #0097A7 !important;
-    }
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
 
-    #post_entry-right-info,
-    .sidebar-colored .sidebar-nav li:hover > a,
-    .sidebar-colored .sidebar-nav li:hover > a i,
-    .sidebar-colored .sidebar-nav li > a:hover,
-    .sidebar-colored .sidebar-nav li > a:hover i,
-    .sidebar-colored .sidebar-nav li > a:focus i,
-    .sidebar-colored .sidebar-nav > .open > a,
-    .sidebar-colored .sidebar-nav > .open > a:hover,
-    .sidebar-colored .sidebar-nav > .open > a:focus,
-    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-        color: #0097A7 !important;
-    }
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
 
-    .toTop {
-        background: #757575 !important;
-    }
+  .toTop {
+    background: #757575 !important;
+  }
 
-    .material-layout .material-post>.material-nav,
-    .material-layout .material-index>.material-nav,
-    .material-nav a {
-        color: #757575;
-    }
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
 
-    #scheme-Paradox .MD-burger-layer {
-        background-color: #757575;
-    }
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
 
-    #scheme-Paradox #post-toc-trigger-btn {
-        color: #757575;
-    }
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
 
-    .post-toc a:hover {
-        color: #00838F;
-        text-decoration: underline;
-    }
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
 </style>
 
 
 <!-- Theme Background Related-->
 
     <style>
-        body{
-            background-image: url(/img/bg.jpg);
-        }
+      body{
+        background-image: url(/img/bg.jpg);
+      }
     </style>
 
 
@@ -143,34 +144,41 @@
 <!-- Fade Effect -->
 
     <style>
-        .fade {
-            transition: all 800ms linear;
-            -webkit-transform: translate3d(0,0,0);
-            -moz-transform: translate3d(0,0,0);
-            -ms-transform: translate3d(0,0,0);
-            -o-transform: translate3d(0,0,0);
-            transform: translate3d(0,0,0);
-            opacity: 1;
-        }
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
 
-        .fade.out{
-            opacity: 0;
-        }
+      .fade.out{
+        opacity: 0;
+      }
     </style>
 
 
+
     <script src="/js/jquery.min.js"></script>
+    <script src="/js/queue.js"></script>
 
-    <link rel="stylesheet" href="/css/highlight/solarized-white.css">
-
-    <!-- UC Browser Compatible-->
+    <!-- UC Browser Compatible -->
     <script>
         var agent = navigator.userAgent.toLowerCase();
         if(agent.indexOf('ucbrowser')>0) {
-            document.write('<link rel="stylesheet" href="/css/uc.css">');
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
             alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
         }
     </script>
+
+    
+
+    
+
+    <!-- Bing Background -->
+    
 
     <!-- Custom Head -->
     
@@ -178,7 +186,7 @@
 
 
     
-        <body id="scheme-Paradox">
+        <body id="scheme-Paradox" class="lazy">
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
@@ -379,7 +387,7 @@
                 
 
                 <!-- Post Content -->
-                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;  </div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;  </div><div class="line"><span class="keyword">struct</span> BiNode  </div><div class="line">&#123;  </div><div class="line">    T data;  </div><div class="line">    BiNode&lt;T&gt; *lchild;<span class="comment">//当前结点的左子树  </span></div><div class="line">    BiNode&lt;T&gt; *rchild;<span class="comment">//当前结点的右子树  </span></div><div class="line">&#125;;  </div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </div><div class="line"><span class="keyword">class</span> BiTree  </div><div class="line">&#123;  </div><div class="line"><span class="keyword">public</span>:  </div><div class="line">    BiTree()  </div><div class="line">    &#123;  </div><div class="line">        root = Create(root);<span class="comment">//构造函数调用create方法  </span></div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    ~BiTree()  </div><div class="line">    &#123;  </div><div class="line">        Delete(root);  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">//为了防止直接访问到根节点，所以采用重载来遍历操作  </span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">()</span><span class="comment">//前序  </span></span></div><div class="line">    &#123;  </div><div class="line">        PreOrder(root);  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">InOrder</span><span class="params">()</span><span class="comment">//中序  </span></span></div><div class="line">    &#123;  </div><div class="line">        InOrder(root);  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PostOrder</span><span class="params">()</span><span class="comment">//后序  </span></span></div><div class="line">    &#123;  </div><div class="line">        PostOrder(root);  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">LevelOrder</span><span class="params">()</span><span class="comment">//层序遍历  </span></span></div><div class="line">    &#123;  </div><div class="line">        BiNode&lt;T&gt; **data = <span class="keyword">new</span> BiNode&lt;T&gt;*[GetCount(root)];<span class="comment">//通过GetCount方法获取  </span></div><div class="line">        <span class="keyword">int</span> front, rear;  </div><div class="line">        front = rear = <span class="number">-1</span>;  </div><div class="line">        <span class="keyword">if</span> (root)  </div><div class="line">        &#123;  </div><div class="line">            data[++rear] = root;<span class="comment">//根节点入队  </span></div><div class="line">            <span class="keyword">while</span> (front!=rear)  </div><div class="line">            &#123;  </div><div class="line">                BiNode&lt;T&gt; *temp = data[++front];<span class="comment">//出队输出  </span></div><div class="line">                <span class="built_in">cout</span> &lt;&lt; temp-&gt;data &lt;&lt; <span class="string">" "</span>;  </div><div class="line">                <span class="keyword">if</span> (temp-&gt;lchild)  </div><div class="line">                    data[++rear] = temp-&gt;lchild;<span class="comment">//将左子树入队  </span></div><div class="line">                <span class="keyword">if</span> (temp-&gt;rchild)  </div><div class="line">                    data[++rear] = temp-&gt;rchild;<span class="comment">//将右子树入队  </span></div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line"><span class="keyword">private</span>:  </div><div class="line">    BiNode&lt;T&gt; *root;<span class="comment">//根节点  </span></div><div class="line">    BiNode&lt;T&gt; *Create(BiNode&lt;T&gt; *bt)  </div><div class="line">    &#123;  </div><div class="line">        T data;  </div><div class="line">        <span class="built_in">cin</span> &gt;&gt; data;  </div><div class="line">        <span class="keyword">if</span>(data==<span class="string">'#'</span>)<span class="comment">//利用‘#’判断结点是否为空  </span></div><div class="line">            <span class="comment">//由于这里使用的是‘#’用于表示空，所以使用该二叉树时，数据类型必须为char  </span></div><div class="line">            bt=<span class="literal">NULL</span>;  </div><div class="line">        <span class="keyword">else</span>  </div><div class="line">        &#123;  </div><div class="line">            <span class="comment">//采用前序遍历输入结点  </span></div><div class="line">            bt = <span class="keyword">new</span> BiNode&lt;T&gt;;  </div><div class="line">            bt-&gt;data = data;  </div><div class="line">            bt-&gt;lchild = Create(bt-&gt;lchild);  </div><div class="line">            bt-&gt;rchild = Create(bt-&gt;rchild);  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> bt;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Delete</span><span class="params">(BiNode&lt;T&gt; *bt)</span><span class="comment">////后序遍历释放结点空间  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (bt)  </div><div class="line">        &#123;  </div><div class="line">            Delete(bt-&gt;lchild);  </div><div class="line">            Delete(bt-&gt;rchild);  </div><div class="line">            <span class="keyword">delete</span> bt;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">GetCount</span><span class="params">(BiNode&lt;T&gt; *bt)</span><span class="comment">//通过先序遍历获取元素数目，用于层序遍历时动态申请数组空间  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">int</span> count=<span class="number">0</span>;  </div><div class="line">        <span class="keyword">if</span> (bt)  </div><div class="line">        &#123;  </div><div class="line">            count++;  </div><div class="line">            count+=GetCount(bt-&gt;lchild);  </div><div class="line">            count+=GetCount(bt-&gt;rchild);  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> count;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PreOrder</span><span class="params">(BiNode&lt;T&gt; *bt)</span><span class="comment">//前序遍历输出  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (bt)  </div><div class="line">        &#123;  </div><div class="line">            <span class="built_in">cout</span> &lt;&lt; bt-&gt;data &lt;&lt; <span class="string">" "</span>;  </div><div class="line">            PreOrder(bt-&gt;lchild);  </div><div class="line">            PreOrder(bt-&gt;rchild);  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">InOrder</span><span class="params">(BiNode&lt;T&gt; *bt)</span><span class="comment">//中序遍历输出  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (bt)  </div><div class="line">        &#123;  </div><div class="line">            InOrder(bt-&gt;lchild);  </div><div class="line">            <span class="built_in">cout</span> &lt;&lt; bt-&gt;data &lt;&lt; <span class="string">" "</span>;  </div><div class="line">            InOrder(bt-&gt;rchild);  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PostOrder</span><span class="params">(BiNode&lt;T&gt; *bt)</span><span class="comment">//后序遍历输出  </span></span></div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (bt)  </div><div class="line">        &#123;  </div><div class="line">            PostOrder(bt-&gt;lchild);  </div><div class="line">            PostOrder(bt-&gt;rchild);  </div><div class="line">            <span class="built_in">cout</span> &lt;&lt; bt-&gt;data &lt;&lt; <span class="string">" "</span>;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>重要的点我都已经写在注释里了，二叉树主要是理解了，剩下的实现并不难。</p>
@@ -401,8 +409,7 @@
     <div id="disqus-comment">
         <div id="disqus_thread"></div>
 <script>
-    $('html').ready(function() {
-        setTimeout(function() {
+    queue.offer(function() {
             var disqus_config = function () {
                 this.page.url = 'http://imystery0.cn/2017/01/11/C++ 数据结构（四）——二叉树/index.html';  // Replace PAGE_URL with your page's canonical URL variable
                 this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
@@ -415,8 +422,7 @@
                 s.setAttribute('data-timestamp', + new Date());
                 (d.head || d.body).appendChild(s);
             })();
-        },1500);
-    });
+        });
 </script>
 
     </div>
@@ -426,6 +432,7 @@
             padding: 2pc;
         }
     </style>
+
 
 
                 
@@ -504,52 +511,47 @@
     <li class="dropdown">
         <ul id="settings-dropdown" class="dropdown-menu">
             
-                <li>
-                    <a href="#" target="_blank" title="Email Me">
-                        <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
-                        Email Me
-                    </a>
-                </li>
-            
         </ul>
     </li>
 
     <!-- Homepage -->
-    <li id="sidebar-first-li">
-        <a href="/" target="_self">
-            <i class="material-icons sidebar-material-icons">home</i>
-            主页
-        </a>
-    </li>
-
-    <!-- I'm Feeling Lucky -->
-    <!--
-    <li class="dropdown">
-        <a href="" target="_self">
-            <i class="material-icons sidebar-material-icons">explore</i>
-             sidebar.imlucky
-        </a>
-    </li>
-    -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
 
     <!-- Archives  -->
-    <li class="dropdown">
-        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-            <i class="material-icons sidebar-material-icons">inbox</i>
-             归档
-            <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">9</span></a>
-        </ul>
-    </li>
+                <a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">9</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Categories  -->
     
         <li class="dropdown">
             <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
                 分类
                 <b class="caret"></b>
             </a>
@@ -558,14 +560,11 @@
                 <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/C/">C++<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux-路由器/">Linux 路由器<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Ubuntu/">Ubuntu<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/系统/">系统<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
+        
     
 
-    <!-- Divider -->
-    <li class="divider"></li>
-
-
     <!-- Pages  -->
-  	
+    
         <li>
             <a href="/about" title="关于">
                 
@@ -574,20 +573,13 @@
                 关于
             </a>
         </li>
-  	
+        
+    
 
-    <!-- Article Numebr  -->
-    <li>
-        <a href="/archives">
-            文章总数
-            <span class="sidebar-badge">13</span>
-        </a>
-    </li>
+    <!-- Article Number  -->
+    
 </ul>
 
-
-        <!-- Sidebar Divider -->
-        <div class="sidebar-divider"></div>
 
         <!-- Sidebar Footer -->
         <!--
@@ -600,46 +592,54 @@ It will not impact the appearance and can give developers a lot of support :)
 它不会影响美观并可以给开发者很大的支持和动力。 :)
 -->
 
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
 <!-- Theme Material -->
-<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-        主题 - Material
-        <span class="sidebar-badge badge-circle">i</span>
-    </div>
-</a>
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
 
 <!-- Help & Support -->
 <!--
-<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-    sidebar.help
-    <span class="mdl-button__ripple-container">
-      <span class="mdl-ripple"></span>
-    </span>
-  </div>
-</a>
+
+    <a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        sidebar.help
+        <span class="mdl-button__ripple-container">
+          <span class="mdl-ripple"></span>
+        </span>
+      </div>
+    </a>
+
 -->
 
 <!-- Feedback -->
 <!--
-<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-         sidebar.feedback
-                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
-</a>
+
 -->
 
-<!-- Abount Theme -->
+<!-- About Theme -->
 <!--
-<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-         sidebar.about_theme
-        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
-</a>-->
+
+    <a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+             sidebar.about_theme
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+    </a>
+
+-->
 
     </div>
 
-    <!-- Sidebar Sponsor -->
+    <!-- Sidebar Image -->
     
 
 </aside>
@@ -763,7 +763,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
                     <!-- Import File -->
-<script src="/js/highlight.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
 <script src="/js/js.min.js"></script>
 <script src="/js/nprogress.js"></script>
 
@@ -772,18 +772,16 @@ It will not impact the appearance and can give developers a lot of support :)
         showSpinner: true
     });
     NProgress.start();
-
     $('#nprogress .bar').css({
-        'background': '#FF4081'
+        'background': '#29d'
     });
     $('#nprogress .peg').css({
-        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
     });
     $('#nprogress .spinner-icon').css({
-        'border-top-color': '#FF4081',
-        'border-left-color': '#FF4081'
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
     });
-
     setTimeout(function() {
         NProgress.done();
         $('.fade').removeClass('out');
