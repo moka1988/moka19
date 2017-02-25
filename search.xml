@@ -13,7 +13,7 @@
 <p>正如gif所示，WebView往下滑隐藏Toolbar，往上滑显示Toolbar，往左滑后退，往右滑前进。</p>
 <hr>
 <h2 id="WebView下滑隐藏ToolBar，上滑显示ToolBar"><a href="#WebView下滑隐藏ToolBar，上滑显示ToolBar" class="headerlink" title="WebView下滑隐藏ToolBar，上滑显示ToolBar"></a>WebView下滑隐藏ToolBar，上滑显示ToolBar</h2><p>使用了<code>Matarial Disign</code>的小伙伴应该很清楚，Google提供了<code>CoordinatorLayout</code>来使控件能够响应滚动事件，比如说当滚动<code>RecyclerView</code>的时候，只需要几行代码就能够让<code>ToolBar</code>跟随着滚动，并且非常流畅，所以我打算的就是通过<code>CoordinatorLayout</code>来实现这个效果。<br>我google了一些博客，有些人是通过重写<code>WebView</code>的<code>onScrollChanged</code>方法来实现，这样的话虽然可以进行很强的自定义，但是我觉得却太复杂了，对于我的这个应用来说，需要实现的功能很简单，不用这么复杂。</p>
-<h3 id="导包我想各位应该都清楚的，所以我就不说版本了"><a href="#导包我想各位应该都清楚的，所以我就不说版本了" class="headerlink" title="导包我想各位应该都清楚的，所以我就不说版本了"></a>导包我想各位应该都清楚的，所以我就不说版本了</h3><h3 id="布局代码如下"><a href="#布局代码如下" class="headerlink" title="布局代码如下"></a>布局代码如下</h3><pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="utf-8"?></span>
+<h3 id="导包我想各位应该都清楚的，所以我就不说版本了"><a href="#导包我想各位应该都清楚的，所以我就不说版本了" class="headerlink" title="导包我想各位应该都清楚的，所以我就不说版本了"></a>导包我想各位应该都清楚的，所以我就不说版本了</h3><h3 id="布局代码如下"><a href="#布局代码如下" class="headerlink" title="布局代码如下"></a>布局代码如下</h3><pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="utf-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>android.support.design.widget.CoordinatorLayout</span>
     <span class="token attr-name"><span class="token namespace">xmlns:</span>android</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://schemas.android.com/apk/res/android<span class="token punctuation">"</span></span>
     <span class="token attr-name"><span class="token namespace">xmlns:</span>app</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://schemas.android.com/apk/res-auto<span class="token punctuation">"</span></span>
@@ -42,9 +42,9 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span> <span class="token attr-name">layout</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@layout/content_web<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>android.support.design.widget.CoordinatorLayout</span><span class="token punctuation">></span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>这个代码各位应该非常眼熟，如果用的是<code>Android Studio</code>，同时新建Activity的时候选择<code>Basic Activity</code>，会自动新建<code>activity_xxx.xml</code>以及<code>content_xxx.xml</code>，而这就是activity的那个文件的源码，注意源码中相比较于默认的源码，我在ToolBar的标签那里添加了一个<code>app:layoutscrollFlags</code>属性。各位如果清楚<code>CoordinatorLayout</code>的应该都知道是什么意思，所以在这里我就不多说了，如果不懂的话可以参考<a href="http://www.jianshu.com/p/c6a6d08f4a2b" title="这篇博客" target="_blank" rel="external">这篇博客</a>。<br>接下来是<code>content</code>的源码：</p>
-<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="utf-8"?></span>
+<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="utf-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>android.support.v4.widget.NestedScrollView</span>
     <span class="token attr-name"><span class="token namespace">xmlns:</span>android</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://schemas.android.com/apk/res/android<span class="token punctuation">"</span></span>
     <span class="token attr-name"><span class="token namespace">xmlns:</span>app</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://schemas.android.com/apk/res-auto<span class="token punctuation">"</span></span>
@@ -61,14 +61,14 @@
         <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>match_parent<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>android.support.v4.widget.NestedScrollView</span><span class="token punctuation">></span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>前几天我在研究为什么SnackBar没有动画效果的时候（具体可参考<a href="http://www.imystery0.cn/2017/02/24/%E8%A7%A3%E5%86%B3SnackBar%E6%97%A0%E5%8A%A8%E7%94%BB%E7%8E%B0%E8%B1%A1/" title="我的上一篇博客" target="_blank" rel="external">我的上一篇博客</a>），也顺便纠结了一下为什么我写的登陆界面不能在弹出键盘的时候自动伸缩，没有特意去找原因，猜测应该是布局中的控件的原因，同样的属性，同样的父布局，但是子布局中有RecyclerView的时候就能够自动伸缩，登陆界面没有RecyclerView，同时也没有其他的可伸缩的布局（比如NestedScrollView，ListView等），或许是因为这个原因。<br>这个方法的来源是这篇博客：<a href="http://blog.csdn.net/y1258429182/article/details/51172546" title="Toolbar在WebView滚动下的显示和隐藏的实现" target="_blank" rel="external">Toolbar在WebView滚动下的显示和隐藏的实现</a><br>而这篇博客中的代码将<code>WebView</code>放在了<code>LinearLayout</code>中，<code>LinearLayout</code>的父布局是v4包中<code>AppBarLayout</code>，如果在IDE中直接添加这个控件不会报错，但是会报一个警告。</p>
 <p><img src="https://raw.githubusercontent.com/Mystery00/Hexo_Post/master/img/2017_02_25_001.png" alt=""></p>
 <p>看起来是因为这个控件的原因，博客的评论中也提到这个包找不到。<br>同时评论中有人提到将<code>AppBarLayout</code>换成<code>NestedScrollView</code>就行了，然后删掉<code>LinearLayout</code>。<br>当然，这也是我的处理办法。<br>写完之后就能够在滑动WebView的时候实现ToolBar下滑隐藏，上滑显示的效果了。</p>
 <hr>
 <h2 id="WebView右滑后退，左滑前进"><a href="#WebView右滑后退，左滑前进" class="headerlink" title="WebView右滑后退，左滑前进"></a>WebView右滑后退，左滑前进</h2><p>本来上面的代码就能够满足要求了，但是我在调试的时候发现一个问题，由于我调试嵌套的并不是一个单独的网页，网页中还有其他的链接，点击也能够正常跳转，但是却存在无法后退的问题，或许是没有找到。<br>为了解决这个问题，我首先想到的方法是使用手势。<br>经常我们在使用一些常用app的时候，能够通过手势执行一些快速操作，比如说Telegram在聊天界面往右滑会有一个动画效果，同时界面回到聊天列表。<br>所以说手势的使用还是挺普遍的。</p>
 <h3 id="监听WebView触摸事件"><a href="#监听WebView触摸事件" class="headerlink" title="监听WebView触摸事件"></a>监听WebView触摸事件</h3><p>看到这个标题，我想一定能很快写出监听的代码</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
     <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">onTouchEvent</span><span class="token punctuation">(</span>MotionEvent event<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token keyword">switch</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span><span class="token function">getAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -93,7 +93,7 @@
         <span class="token punctuation">}</span>
         <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onTouchEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>完全正确的代码，但我调试的时候却发现了问题，无论我怎么滑动都没有反应，然后我使用log发现这个方法根本没有执行，所以无效。<br>google了一下原因，得到这么一个答案：</p>
 <pre><code>一般我们用于接收GestureDetector对象的方法是OnTouchevent();,而在View组件占用了屏幕空间之后，这个方法就无效了，只有换成 dispatchTouchEvent方法才有效！
 </code></pre><p>原文链接：<a href="https://my.oschina.net/eoeandroid/blog/167263" title="Webview中无法触发手势方法（ontouchevent,onfling...)的解决方法" target="_blank" rel="external">Webview中无法触发手势方法（ontouchevent,onfling…)的解决方法</a><br>于是将<code>onTouchEvent</code>换成<code>dispatchTouchEvent</code>，完美解决。</p>
@@ -254,7 +254,7 @@ IO::Socket::SSL 主要提供了 https 支持，在安装过程中可能会涉及
 <h5 id="Linux使用教程"><a href="#Linux使用教程" class="headerlink" title="Linux使用教程"></a><strong>Linux使用教程</strong></h5><p>对于我们linux用户来说，我们已经通过上面的步骤安装了<code>Mojo::Webqq</code>这个插件了，至于要通过文件进行启动即可，而这个插件使用<code>perl</code>来写的，所以自然是使用<code>perl</code>的语法来使用。<br>新建一个pl文件</p>
 <pre><code>$ vi xxx.pl
 </code></pre><p><strong>其中xxx表示文件名，可自行修改。</strong><br>然后将下面的内容粘贴到这个文件中（vim编辑器）：</p>
-<pre class="line-numbers language-perl"><code class="language-perl"><span class="token comment" spellcheck="true">#!/usr/bin/env perl</span>
+<pre class=" language-perl"><code class="language-perl"><span class="token comment" spellcheck="true">#!/usr/bin/env perl</span>
 <span class="token keyword">use</span> Mojo<span class="token punctuation">:</span><span class="token punctuation">:</span>Webqq<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#微信使用 use Mojo::Weixin</span>
 <span class="token keyword">my</span> <span class="token variable">$client</span> <span class="token operator">=</span> Mojo<span class="token punctuation">:</span><span class="token punctuation">:</span>Webqq<span class="token operator">-></span>new<span class="token punctuation">(</span>log_encoding<span class="token operator">=></span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token variable">$client</span><span class="token operator">-></span>load<span class="token punctuation">(</span><span class="token string">"ShowMsg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#将接收到的消息在控制台打印出来，如果不需要可删除该行</span>
@@ -274,7 +274,7 @@ IO::Socket::SSL 主要提供了 https 支持，在安装过程中可能会涉及
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">#不需要 APP 内回复功能请删除以上两行（不包括被 # 号注释掉的几行）</span>
 <span class="token variable">$client</span><span class="token operator">-></span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>其中的token一行填上我们在app中获取到的token<br>保存退出，然后执行</p>
 <pre><code>$ perl xxx.pl
 </code></pre><p><strong>其中xxx表示文件名，可自行修改。</strong></p>
@@ -500,7 +500,7 @@ tags: tag
     <entry>
       <title><![CDATA[C++ 数据结构（四）——二叉树]]></title>
       <url>http://imystery0.cn/2017/01/11/C++%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-      <content type="html"><![CDATA[<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>  
+      <content type="html"><![CDATA[<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>  
 <span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>  
 <span class="token keyword">struct</span> BiNode  
 <span class="token punctuation">{</span>  
@@ -620,7 +620,7 @@ tags: tag
         <span class="token punctuation">}</span>  
     <span class="token punctuation">}</span>  
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>重要的点我都已经写在注释里了，二叉树主要是理解了，剩下的实现并不难。</p>
 ]]></content>
       
@@ -636,7 +636,7 @@ tags: tag
     <entry>
       <title><![CDATA[C++ 数据结构（三）——队列]]></title>
       <url>http://imystery0.cn/2017/01/11/C++%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E9%98%9F%E5%88%97/</url>
-      <content type="html"><![CDATA[<h3 id="LinearStack-h"><a href="#LinearStack-h" class="headerlink" title="LinearStack.h"></a>LinearStack.h</h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>  
+      <content type="html"><![CDATA[<h3 id="LinearStack-h"><a href="#LinearStack-h" class="headerlink" title="LinearStack.h"></a>LinearStack.h</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>  
 <span class="token keyword">class</span> <span class="token class-name">LinearQueue</span><span class="token comment" spellcheck="true">//顺序队列  </span>
 <span class="token punctuation">{</span>  
 <span class="token keyword">private</span><span class="token operator">:</span>  
@@ -750,8 +750,8 @@ tags: tag
         cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  
     <span class="token punctuation">}</span>  
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="NodeStack-h"><a href="#NodeStack-h" class="headerlink" title="NodeStack.h"></a>NodeStack.h</h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>  
+</code></pre>
+<h3 id="NodeStack-h"><a href="#NodeStack-h" class="headerlink" title="NodeStack.h"></a>NodeStack.h</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>  
 <span class="token keyword">struct</span> Node_Queue<span class="token comment" spellcheck="true">//结点  </span>
 <span class="token punctuation">{</span>  
     T data<span class="token punctuation">;</span>  
@@ -842,7 +842,7 @@ tags: tag
         cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  
     <span class="token punctuation">}</span>  
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>队列的特点是在一端进行插入操作，另一端进行输出操作，因此使用两个int值（或指针）来表示队头和队尾。</p>
 ]]></content>
       
@@ -858,7 +858,7 @@ tags: tag
     <entry>
       <title><![CDATA[C++ 数据结构（二）——栈]]></title>
       <url>http://imystery0.cn/2017/01/11/C++%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E6%A0%88/</url>
-      <content type="html"><![CDATA[<h3 id="LinearStack-h"><a href="#LinearStack-h" class="headerlink" title="LinearStack.h"></a>LinearStack.h</h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>  
+      <content type="html"><![CDATA[<h3 id="LinearStack-h"><a href="#LinearStack-h" class="headerlink" title="LinearStack.h"></a>LinearStack.h</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>  
 <span class="token keyword">class</span> <span class="token class-name">LinearStack</span><span class="token comment" spellcheck="true">//顺序栈  </span>
 <span class="token punctuation">{</span>  
 <span class="token keyword">private</span><span class="token operator">:</span>  
@@ -946,8 +946,8 @@ tags: tag
         cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  
     <span class="token punctuation">}</span>  
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="NodeStack-h"><a href="#NodeStack-h" class="headerlink" title="NodeStack.h"></a>NodeStack.h</h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>  
+</code></pre>
+<h3 id="NodeStack-h"><a href="#NodeStack-h" class="headerlink" title="NodeStack.h"></a>NodeStack.h</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>  
 <span class="token keyword">struct</span> Node_Stack<span class="token comment" spellcheck="true">//结点  </span>
 <span class="token punctuation">{</span>  
     T data<span class="token punctuation">;</span>  
@@ -1054,7 +1054,7 @@ tags: tag
         cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  
     <span class="token punctuation">}</span>  
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>正如上一篇文章所讲的，栈就是在线性表的基础上添加了一个只能在栈顶操作元素的约束条件。整个代码大多数都是和线性表完全相同，所以写出了线性表，写栈就很简单。</p>
 ]]></content>
       
@@ -1071,7 +1071,7 @@ tags: tag
       <title><![CDATA[C++ 数据结构（一）——线性表]]></title>
       <url>http://imystery0.cn/2017/01/11/C++%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E8%A1%A8/</url>
       <content type="html"><![CDATA[<p>首先第一次写博客，先贴上代码。</p>
-<h3 id="LinearList-h"><a href="#LinearList-h" class="headerlink" title="LinearList.h"></a>LinearList.h</h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<h3 id="LinearList-h"><a href="#LinearList-h" class="headerlink" title="LinearList.h"></a>LinearList.h</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
 <span class="token keyword">class</span> <span class="token class-name">LinearList</span>
 <span class="token punctuation">{</span>
 <span class="token keyword">private</span><span class="token operator">:</span>
@@ -1169,8 +1169,8 @@ tags: tag
         cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="NodeList-h"><a href="#NodeList-h" class="headerlink" title="NodeList.h"></a>NodeList.h</h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+</code></pre>
+<h3 id="NodeList-h"><a href="#NodeList-h" class="headerlink" title="NodeList.h"></a>NodeList.h</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
 <span class="token keyword">struct</span> Node_List
 <span class="token punctuation">{</span>
     T data<span class="token punctuation">;</span>
@@ -1326,7 +1326,7 @@ tags: tag
         cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>线性表算是很基础的东西了，之后的栈和队列是在线性表的基础上进行一定的修改得来的。<br>顺序存储结构就是用数组来进行存储、删除，存储时有长度限制；链式存储结构没有长度限制，原理是每次利用递归从头指针到目的位置进行存储、删除。</p>
 ]]></content>
       
@@ -1343,17 +1343,17 @@ tags: tag
       <title><![CDATA[Hello World]]></title>
       <url>http://imystery0.cn/2017/01/11/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
+</code></pre>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo server
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
+</code></pre>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo generate
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
+</code></pre>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo deploy
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
+</code></pre>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 ]]></content>
       
