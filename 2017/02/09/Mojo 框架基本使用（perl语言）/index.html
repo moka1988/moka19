@@ -182,7 +182,8 @@
 
     <!-- Custom Head -->
     
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
     
@@ -472,7 +473,7 @@ IO::Socket::SSL 主要提供了 https 支持，在安装过程中可能会涉及
 <h5 id="Linux使用教程"><a href="#Linux使用教程" class="headerlink" title="Linux使用教程"></a><strong>Linux使用教程</strong></h5><p>对于我们linux用户来说，我们已经通过上面的步骤安装了<code>Mojo::Webqq</code>这个插件了，至于要通过文件进行启动即可，而这个插件使用<code>perl</code>来写的，所以自然是使用<code>perl</code>的语法来使用。<br>新建一个pl文件</p>
 <pre><code>$ vi xxx.pl
 </code></pre><p><strong>其中xxx表示文件名，可自行修改。</strong><br>然后将下面的内容粘贴到这个文件中（vim编辑器）：</p>
-<pre class=" language-perl"><code class="language-perl"><span class="token comment" spellcheck="true">#!/usr/bin/env perl</span>
+<pre class="line-numbers language-perl"><code class="language-perl"><span class="token comment" spellcheck="true">#!/usr/bin/env perl</span>
 <span class="token keyword">use</span> Mojo<span class="token punctuation">:</span><span class="token punctuation">:</span>Webqq<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#微信使用 use Mojo::Weixin</span>
 <span class="token keyword">my</span> <span class="token variable">$client</span> <span class="token operator">=</span> Mojo<span class="token punctuation">:</span><span class="token punctuation">:</span>Webqq<span class="token operator">-></span>new<span class="token punctuation">(</span>log_encoding<span class="token operator">=></span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token variable">$client</span><span class="token operator">-></span>load<span class="token punctuation">(</span><span class="token string">"ShowMsg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#将接收到的消息在控制台打印出来，如果不需要可删除该行</span>
@@ -492,7 +493,7 @@ IO::Socket::SSL 主要提供了 https 支持，在安装过程中可能会涉及
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">#不需要 APP 内回复功能请删除以上两行（不包括被 # 号注释掉的几行）</span>
 <span class="token variable">$client</span><span class="token operator">-></span>run<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其中的token一行填上我们在app中获取到的token<br>保存退出，然后执行</p>
 <pre><code>$ perl xxx.pl
 </code></pre><p><strong>其中xxx表示文件名，可自行修改。</strong></p>
