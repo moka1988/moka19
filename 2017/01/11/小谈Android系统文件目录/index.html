@@ -1,383 +1,106 @@
 <!DOCTYPE html>
-<html lang="zh">
-    <head>
-    <!-- 
-        © Material Theme
-        https://github.com/viosey/hexo-theme-material
-        Version: 1.3.0 -->
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>小谈Android系统文件目录 | Mystery0の小站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="从高三第一次用安卓手机开始，笔者便走上了刷机的不归路。其实今天谈的东西呢，主要是一些基础知识，也就是笔者刷机阶段所学到的一些东西。Android基于Linux系统开发，大多数系统目录和Linux也差不多，但是还是有些不一样的。从一个其他系统包移植到官方包，我们最开始操作的是两个文件，也就是第三方包和官方包的system.img和boot.img，从名字可知，system是系统，boot就是内核还有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小谈Android系统文件目录">
+<meta property="og:url" content="http://imystery0.cn/2017/01/11/小谈Android系统文件目录/index.html">
+<meta property="og:site_name" content="Mystery0の小站">
+<meta property="og:description" content="从高三第一次用安卓手机开始，笔者便走上了刷机的不归路。其实今天谈的东西呢，主要是一些基础知识，也就是笔者刷机阶段所学到的一些东西。Android基于Linux系统开发，大多数系统目录和Linux也差不多，但是还是有些不一样的。从一个其他系统包移植到官方包，我们最开始操作的是两个文件，也就是第三方包和官方包的system.img和boot.img，从名字可知，system是系统，boot就是内核还有">
+<meta property="og:image" content="http://img.blog.csdn.net/20161221233747793?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161221233815059?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161221234124657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161221234157345?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161221234351354?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161221234422082?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161221234509964?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2017-02-01T11:51:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小谈Android系统文件目录">
+<meta name="twitter:description" content="从高三第一次用安卓手机开始，笔者便走上了刷机的不归路。其实今天谈的东西呢，主要是一些基础知识，也就是笔者刷机阶段所学到的一些东西。Android基于Linux系统开发，大多数系统目录和Linux也差不多，但是还是有些不一样的。从一个其他系统包移植到官方包，我们最开始操作的是两个文件，也就是第三方包和官方包的system.img和boot.img，从名字可知，system是系统，boot就是内核还有">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161221233747793?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+  
+    <link rel="alternate" href="/atom.xml" title="Mystery0の小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-    <!-- Title -->
-    
-    <title>
-        
-            小谈Android系统文件目录 | 
-        
-        Mystery0
-    </title>
-
-    <!-- Favicons -->
-    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
-    <link rel="icon" sizes="192x192" href="/img/favicon.png">
-    <link rel="apple-touch-icon" href="/img/favicon.png">
-
-    <!-- Meta & Info -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0097A7">
-    <meta name="author" content="Mystery0 M">
-    <meta name="description" content="A programer.">
-    <meta name="keywords" content="null">
-
-    <!--iOS -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-title" content="Title">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="480">
-
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Mystery0">
-
-    <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://imystery0.cn">
-    <meta property="og:type" content="blog">
-    <meta property="og:title" content="小谈Android系统文件目录 | Mystery0">
-    <meta property="og:description" content="A programer.">
-    
-
-    <!--[if lte IE 9]>
-        <link rel="stylesheet" href="/css/ie-blocker.css">
-
-        
-            <script src="/js/ie-blocker.zhCN.js"></script>
-        
-    <![endif]-->
-
-    <!-- Import CSS -->
-    <link rel="stylesheet" href="/css/material.min.css">
-    <link rel="stylesheet" href="/css/style.min.css">
-    <!-- Config CSS -->
-
-
-<!-- Other Styles -->
-<style>
-  body, html {
-    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-  }
-
-  a {
-    color: #00838F;
-  }
-
-  .mdl-card__media,
-  #search-label,
-  #search-form-label:after,
-  #scheme-Paradox .hot_tags-count,
-  #scheme-Paradox .sidebar_archives-count,
-  #scheme-Paradox .sidebar-colored .sidebar-header,
-  #scheme-Paradox .sidebar-colored .sidebar-badge{
-    background-color: #0097A7 !important;
-  }
-
-  /* Sidebar User Drop Down Menu Text Color */
-  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
-  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-    color: #0097A7 !important;
-  }
-
-  #post_entry-right-info,
-  .sidebar-colored .sidebar-nav li:hover > a,
-  .sidebar-colored .sidebar-nav li:hover > a i,
-  .sidebar-colored .sidebar-nav li > a:hover,
-  .sidebar-colored .sidebar-nav li > a:hover i,
-  .sidebar-colored .sidebar-nav li > a:focus i,
-  .sidebar-colored .sidebar-nav > .open > a,
-  .sidebar-colored .sidebar-nav > .open > a:hover,
-  .sidebar-colored .sidebar-nav > .open > a:focus,
-  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-    color: #0097A7 !important;
-  }
-
-  .toTop {
-    background: #757575 !important;
-  }
-
-  .material-layout .material-post>.material-nav,
-  .material-layout .material-index>.material-nav,
-  .material-nav a {
-    color: #757575;
-  }
-
-  #scheme-Paradox .MD-burger-layer {
-    background-color: #757575;
-  }
-
-  #scheme-Paradox #post-toc-trigger-btn {
-    color: #757575;
-  }
-
-  .post-toc a:hover {
-    color: #00838F;
-    text-decoration: underline;
-  }
-</style>
-
-
-<!-- Theme Background Related-->
-
-    <style>
-      body{
-        background-image: url(/img/bg.jpg);
-      }
-    </style>
-
-
-
-
-<!-- Fade Effect -->
-
-    <style>
-      .fade {
-        transition: all 800ms linear;
-        -webkit-transform: translate3d(0,0,0);
-        -moz-transform: translate3d(0,0,0);
-        -ms-transform: translate3d(0,0,0);
-        -o-transform: translate3d(0,0,0);
-        transform: translate3d(0,0,0);
-        opacity: 1;
-      }
-
-      .fade.out{
-        opacity: 0;
-      }
-    </style>
-
-
-
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/queue.js"></script>
-
-    <!-- UC Browser Compatible -->
-    <script>
-        var agent = navigator.userAgent.toLowerCase();
-        if(agent.indexOf('ucbrowser')>0) {
-            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
-            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
-        }
-    </script>
-
-    
-
-    
-
-    <!-- Bing Background -->
-    
-
-    <!-- Custom Head -->
-    
 </head>
 
-
-    
-        <body id="scheme-Paradox" class="lazy">
-            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
-                
-
-                <!-- Main Container -->
-                <main class="material-layout__content" id="main">
-
-                    <!-- Top Anchor -->
-                    <div id="top"></div>
-
-                    
-                        <!-- Hamburger Button -->
-                        <button class="MD-burger-icon sidebar-toggle">
-                            <span class="MD-burger-layer"></span>
-                        </button>
-                    
-
-                    <!-- Post TOC -->
-
-    
-    <!-- Back Button -->
-    <!--
-    <div class="material-back" id="backhome-div" tabindex="0">
-        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
-           href="#" onclick="window.history.back();return false;"
-           target="_self"
-           role="button"
-           data-upgraded=",MaterialButton,MaterialRipple">
-            <i class="material-icons" role="presentation">arrow_back</i>
-            <span class="mdl-button__ripple-container">
-                <span class="mdl-ripple"></span>
-            </span>
-        </a>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Mystery0の小站</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">mystery0dyl520@gmail.com</a>
+        </h2>
+      
     </div>
-    -->
-
-    <!-- Left aligned menu below button -->
-    <button id="post-toc-trigger-btn"
-        class="mdl-button mdl-js-button mdl-button--icon">
-        <i class="material-icons">format_list_numbered</i>
-    </button>
-
-    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解包system"><span class="post-toc-number">1.</span> <span class="post-toc-text">解包system</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#data目录"><span class="post-toc-number">2.</span> <span class="post-toc-text">data目录</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#data-app"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">data/app</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#data-data"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">data/data</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#sd卡下Android目录"><span class="post-toc-number">3.</span> <span class="post-toc-text">sd卡下Android目录</span></a></li></ol>
-
-        <!--
-        <li class="mdl-menu__item">
-            Some Action
-        </li>
-        -->
-    </ul>
-
-
-
-
-<!-- Layouts -->
-
-    <!-- Post Module -->
-    <div class="material-post_container">
-
-        <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-
-                <!-- Post Header(Thumbnail & Title) -->
-                
-    <!-- Paradox Post Header -->
-    
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script>
-    var randomNum = Math.floor(Math.random() * 19 + 1);
-
-    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
-</script>
-
+          <a class="main-nav-link" href="/">Home</a>
         
-    
-            <p class="article-headline-p">
-                小谈Android系统文件目录
-            </p>
-        </div>
-
-
-
-
-
-                
-                    <!-- Paradox Post Info -->
-                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-
-    <!-- Author Avatar -->
-    <div id="author-avatar">
-        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://imystery0.cn"></form>
+      </div>
     </div>
-    <!-- Author Name & Date -->
-    <div>
-        <strong>Mystery0 M</strong>
-        <span>1月 11, 2017</span>
-    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-小谈Android系统文件目录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/11/小谈Android系统文件目录/" class="article-date">
+  <time datetime="2017-01-11T10:45:09.000Z" itemprop="datePublished">2017-01-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
 
-    <div class="section-spacer"></div>
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      小谈Android系统文件目录
+    </h1>
+  
 
-    <!-- Favorite -->
-    <!--
-        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
-            <i class="material-icons" role="presentation">favorite</i>
-            <span class="visuallyhidden">favorites</span>
-        </button>
-    -->
-
-    <!-- Qrcode -->
+      </header>
     
-
-    <!-- Tags (bookmark) -->
-    
-
-    <!-- Share -->
-    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">share</i>
-    <span class="visuallyhidden">share</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
-    
-
-    
-
-    <!-- Share Weibo -->
-    
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=小谈Android系统文件目录&url=http://imystery0.cn//2017/01/11/小谈Android系统文件目录/index.html&pic=&searchPic=false&style=simple" target="_blank">
-            <li class="mdl-menu__item">
-                分享到微博
-            </li>
-        </a>
-    
-
-    <!-- Share Twitter -->
-    
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=小谈Android系统文件目录&url=http://imystery0.cn//2017/01/11/小谈Android系统文件目录/index.html&via=Mystery0 M" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Twitter
-            </li>
-        </a>
-    
-
-    <!-- Share Facebook -->
-    
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://imystery0.cn//2017/01/11/小谈Android系统文件目录/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Facebook
-            </li>
-        </a>
-    
-
-    <!-- Share Google+ -->
-    
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://imystery0.cn//2017/01/11/小谈Android系统文件目录/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Google+
-            </li>
-        </a>
-    
-
-    <!-- Share LinkedIn -->
-    
-
-    <!-- Share QQ -->
-    
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Mystery0&title=小谈Android系统文件目录&summary=A programer.&pics=http://imystery0.cn/img/favicon.png&url=http://imystery0.cn/2017/01/11/小谈Android系统文件目录/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 QQ
-            </li>
-        </a>
-    
-
-    <!-- Share Telegram -->
-    
-        <a class="post_share-link" href="https://telegram.me/share/url?url=http://imystery0.cn//2017/01/11/小谈Android系统文件目录/index.html&text=小谈Android系统文件目录" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Telegram
-            </li>
-        </a>
-    
-</ul>
-
-</div>
-
-                
-
-                <!-- Post Content -->
-                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-    
+    <div class="article-entry" itemprop="articleBody">
+      
         <p>从高三第一次用安卓手机开始，笔者便走上了刷机的不归路。其实今天谈的东西呢，主要是一些基础知识，也就是笔者刷机阶段所学到的一些东西。<br>Android基于Linux系统开发，大多数系统目录和Linux也差不多，但是还是有些不一样的。从一个其他系统包移植到官方包，我们最开始操作的是两个文件，也就是第三方包和官方包的<code>system.img</code>和<code>boot.img</code>，从名字可知，system是系统，boot就是内核还有一些底层的东西。</p>
 <h1 id="解包system"><a href="#解包system" class="headerlink" title="解包system"></a>解包system</h1><p>使用cygwin解包system，得到的就是下面的目录：<br><img src="http://img.blog.csdn.net/20161221233747793?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>其中<code>META-INF</code>是脚本，系统在更新（刷机）时候执行的就是这里面的脚本文件，当然打包前后的语法是不同的。system文件夹自然是解包的system文件，具体结构如下：<br><img src="http://img.blog.csdn.net/20161221233815059?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>下面再来一张Android手机root之后的系统文件目录：<br><img src="http://img.blog.csdn.net/20161221234124657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><img src="http://img.blog.csdn.net/20161221234157345?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>可以看到这两个目录基本一模一样。<br>其中的app和priv-app存放的都是系统程序的apk文件，同理如果要把一个软件安装成系统文件，直接扔到这个目录下重启就行了（不同版本不同）。<br><code>bin</code>存放的是常用的系统本地命令（二进制），大部分是<code>toolbox</code>的链接（类似于嵌入式Linux中的<code>busybox</code>）。<br><code>etc</code>存放系统配置文件，如hosts。framework，Java平台架构核心库，jar包和odex优化的文件，我更愿意叫它框架，Android2.3的状态栏图标就是要在这个文件夹下的<code>framework-res.apk</code>文件中修改。<br><code>font</code>，字体。<br><code>lib</code>，系统底层共享库，.so库文件。<br><code>media</code>，系统音频文件（比如照相机声音）以及开机动画。<br><code>xbin</code>，不常用的系统管理工具，相当于linux的<code>/sbin</code>。usr，存放用户配置文件。</p>
 <h1 id="data目录"><a href="#data目录" class="headerlink" title="data目录"></a>data目录</h1><p>对于Android开发人员来说，使用最多的当然是<code>data</code>目录。<code>data</code>存放的是数据，系统软件、个人软件的数据都存放在这里<br>。<br><img src="http://img.blog.csdn.net/20161221234351354?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><img src="http://img.blog.csdn.net/20161221234422082?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>较为重要的目录是app和data。</p>
@@ -385,445 +108,151 @@
 <h2 id="data-data"><a href="#data-data" class="headerlink" title="data/data"></a>data/data</h2><p><code>data/data</code>存放的是数据信息，里面按照包名建立了很多文件夹，分别是对应软件的数据目录，数据库，文件，缓存，配置文件之类的。<br><img src="http://img.blog.csdn.net/20161221234509964?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlzdGVyeTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>Android文件操作的<code>Context.getFilesDir()</code>，<code>Context.openFileOutput()</code>获取的目录便是<code>data/data/&lt;包名&gt;/files</code>目录，此外还有cache目录（<code>Context.getCacheDir()</code>），shared_pref目录（<code>Context.getSharedPreferences()</code> 建立的preferences文件（xml）存放目录）。</p>
 <h1 id="sd卡下Android目录"><a href="#sd卡下Android目录" class="headerlink" title="sd卡下Android目录"></a>sd卡下Android目录</h1><p>在sd卡的根目录下也有一个Android文件夹，这也是比较重要的。也许你偶尔会发现自己缓存的视频就存放在这个文件下。里面分为data和obb文件夹，data是运行时产生的数据存放位置，obb一般是数据包（比如大型游戏的数据包）存放位置。data下又是按照包名区分的，里面也有files和cache文件夹，同<code>data/data</code>，但是代码访问时是通过<code>Context.getExternalFilesDir()</code>和<code>Context.getExternalCacheDir()</code>访问的。<br>这些知识呢算是基础，应该自己去学习的，搞Android开发的偶尔玩玩手机也是不错的，不然写一个数据库结果连存放在哪里都不知道。</p>
 
-    
-
-    
-</div>
-
-
-                
-
-                <!-- Post Comments -->
-                
-                    
-
-
-    <!-- 使用 DISQUS -->
-    <div id="disqus-comment">
-        <div id="disqus_thread"></div>
-<script>
-    queue.offer(function() {
-            var disqus_config = function () {
-                this.page.url = 'http://imystery0.cn/2017/01/11/小谈Android系统文件目录/index.html';  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-
-            (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document;
-                var s = d.createElement('script');
-                s.src = '//mystery0.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', + new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        });
-</script>
-
+      
     </div>
-    <style>
-        #disqus-comment{
-            background-color: #eee;
-            padding: 2pc;
-        }
-    </style>
-
-
-
-                
-            </div>
-
-            <!-- Post Prev & Next Nav -->
-            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-    <!-- Prev Nav -->
+    <footer class="article-footer">
+      <a data-url="http://imystery0.cn/2017/01/11/小谈Android系统文件目录/" data-id="cizl4kwvr000i44nt056rsndg" class="article-share-link">Share</a>
+      
+        <a href="http://imystery0.cn/2017/01/11/小谈Android系统文件目录/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
     
-        <a href="/2017/01/11/个人服务器搭建Hexo博客（Windows篇）/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
-
-    <!-- Section Spacer -->
-    <div class="section-spacer"></div>
-
-    <!-- Next Nav -->
-    
-        <a href="/2017/01/11/Android studio与github的使用（多人开发源码同步问题）/" id="post_nav-older" class="next-content">
-            旧篇
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_forward</i>
-            </button>
-        </a>
-    
-</nav>
-
-        </div>
-    </div>
-
-
-
-                    
-                        <!-- Overlay For Active Sidebar -->
-<div class="sidebar-overlay"></div>
-
-<!-- Material sidebar -->
-<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
-    <div id="sidebar-main">
-        <!-- Sidebar Header -->
-        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.jpg);">
-    <!-- Top bar -->
-    <div class="top-bar"></div>
-
-    <!-- Sidebar toggle button -->
-    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
-        <i class="material-icons">clear_all</i>
-        <span class="mdl-button__ripple-container">
-            <span class="mdl-ripple">
-            </span>
-        </span>
-    </button>
-
-    <!-- Sidebar Avatar -->
-    <div class="sidebar-image">
-        <img src="/img/avatar.png" alt="Mystery0 M's avatar">
-    </div>
-
-    <!-- Sidebar Email -->
-    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        mystery0dyl@icloud.com
-        <b class="caret"></b>
-    </a>
-</div>
-
-
-        <!-- Sidebar Navigation  -->
-        <ul class="nav sidebar-nav">
-    <!-- User dropdown  -->
-    <li class="dropdown">
-        <ul id="settings-dropdown" class="dropdown-menu">
-            
-                <li>
-                    <a href="#" target="_blank" title="Email Me">
-                        
-                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
-                        
-                        Email Me
-                    </a>
-                </li>
-            
-        </ul>
-    </li>
-
-    <!-- Homepage -->
-    
-        <li id="sidebar-first-li">
-            <a href="/" target="_self">
-                
-                    <i class="material-icons sidebar-material-icons">home</i>
-                
-                主页
-            </a>
-        </li>
+<nav id="article-nav">
+  
+    <a href="/2017/01/11/个人服务器搭建Hexo博客（Windows篇）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-    
-
-    <!-- Archives  -->
-    
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">inbox</i>
-                
-                    归档
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-            <li>
-                <a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">9</span></a>
-            </ul>
-        </li>
+          个人服务器搭建Hexo博客（Windows篇）
         
-    
-
-    <!-- Categories  -->
-    
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                分类
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/C/">C++<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux-路由器/">Linux 路由器<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Ubuntu/">Ubuntu<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/系统/">系统<span class="sidebar_archives-count">1</span></a>
-            </ul>
-        </li>
-        
-    
-
-    <!-- Pages  -->
-    
-        <li>
-            <a href="/about" title="关于">
-                
-                    <i class="material-icons sidebar-material-icons">person</i>
-                
-                关于
-            </a>
-        </li>
-        
-    
-
-    <!-- Article Number  -->
-    
-</ul>
-
-
-        <!-- Sidebar Footer -->
-        <!--
-I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
-If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
-It will not impact the appearance and can give developers a lot of support :)
-
-很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
-如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
-它不会影响美观并可以给开发者很大的支持和动力。 :)
--->
-
-<!-- Sidebar Divider -->
-
-    <div class="sidebar-divider"></div>
-
-
-<!-- Theme Material -->
-
-    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-            主题 - Material
-            <span class="sidebar-badge badge-circle">i</span>
-        </div>
-    </a>
-
-
-<!-- Help & Support -->
-<!--
-
-    <a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
-        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-        sidebar.help
-        <span class="mdl-button__ripple-container">
-          <span class="mdl-ripple"></span>
-        </span>
       </div>
     </a>
-
--->
-
-<!-- Feedback -->
-<!--
-
--->
-
-<!-- About Theme -->
-<!--
-
-    <a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
-        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-             sidebar.about_theme
-            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+  
+  
+    <a href="/2017/01/11/Android studio与github的使用（多人开发源码同步问题）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android studio与github的使用（多人开发源码同步问题）</div>
     </a>
+  
+</nav>
 
--->
+  
+</article>
 
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux-路由器/">Linux 路由器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客/">博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统/">系统</a></li></ul>
     </div>
+  </div>
 
-    <!-- Sidebar Image -->
+
+  
     
 
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/02/25/WebView搭配Material Design新控件使用/">WebView搭配Material Design新控件使用</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/24/解决SnackBar无动画现象/">解决SnackBar无动画现象</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/18/斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑/">斐讯K2 A6版 V22.4.6.3 路由器刷机踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/09/Mojo 框架基本使用（perl语言）/">Mojo 框架基本使用（perl语言）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/12/Ubuntu使用Shadowsocks-qt5科学上网/">Ubuntu使用Shadowsocks-qt5科学上网</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
 </aside>
-
-                    
-
-                    
-                        <!-- Footer Top Button -->
-                        <div class="toTop-wrap">
-    <a href="#top" class="toTop">
-        <i class="material-icons footer_top-i">expand_less</i>
-    </a>
-</div>
-
-                    
-
-                    <!--Footer-->
-<footer class="mdl-mini-footer" id="bottom">
-    
-        <!-- Paradox Footer Left Section -->
-        <div class="mdl-mini-footer--left-section sns-list">
-    <!-- Twitter -->
-    
-        <a href="https://twitter.com/Mystery00dyl" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
-                <span class="visuallyhidden">Twitter</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- Facebook -->
-    
-        <a href="https://www.facebook.com/profile.php?id=100011361983621&amp;ref=bookmarks" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.png);">
-                <span class="visuallyhidden">Facebook</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- Google + -->
-    
-        <a href="https://plus.google.com/109157499544556604338" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
-                <span class="visuallyhidden">Google Plus</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- Weibo -->
-    
-
-    <!-- Instagram -->
-    
-
-    <!-- Tumblr -->
-    
-
-    <!-- Github -->
-    
-        <a href="https://github.com/Mystery00" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
-                <span class="visuallyhidden">Github</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- LinkedIn -->
-    
-
-    <!-- Zhihu -->
-    
-
-    <!-- Bilibili -->
-    
-        <a href="http://space.bilibili.com/4386572/#!/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-bilibili.png);">
-                <span class="visuallyhidden">Bilibili</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- Telegram -->
-    
-        <a href="https://t.me/Mystery0" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-telegram.png);">
-                <span class="visuallyhidden">Telegram</span>
-            </button><!--
-     --></a>
-    
-</div>
-
-
-        <!--Copyright-->
-        <div id="copyright">
-            Copyright&nbsp;©&nbsp;
-            <script type="text/javascript">
-                var fd = new Date();
-                document.write(fd.getFullYear());
-            </script>
-            &nbsp;Mystery0
-        </div>
-
-        <!-- Paradox Footer Right Section -->
-
-        <!--
-        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
-        It will not impact the appearance and can give developers a lot of support :)
-
-        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
-        它不会影响美观并可以给开发者很大的支持。 :)
-        -->
-
-        <div class="mdl-mini-footer--right-section">
-            <div>
-                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
-                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
-            </div>
-        </div>
-    
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Mystery0 M<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
 </footer>
-
-
-                    <!-- Import File -->
-<script src="/js/lazyload.min.js"></script>
-<script src="/js/js.min.js"></script>
-<script src="/js/nprogress.js"></script>
-
-<script type="text/javascript">
-    NProgress.configure({
-        showSpinner: true
-    });
-    NProgress.start();
-    $('#nprogress .bar').css({
-        'background': '#29d'
-    });
-    $('#nprogress .peg').css({
-        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
-    });
-    $('#nprogress .spinner-icon').css({
-        'border-top-color': '#29d',
-        'border-left-color': '#29d'
-    });
-    setTimeout(function() {
-        NProgress.done();
-        $('.fade').removeClass('out');
-    }, 800);
-</script>
-
-
-
-
-
-
-
-
-
-
-
-    <!-- 使用 DISQUS js 代码 -->
-    <script id="dsq-count-scr" src="//mystery0.disqus.com/count.js" async></script>
-
-
-
-<!-- Swiftye -->
-
-
-<!-- Local Search-->
-
-
-<!-- Window Load-->
-<script>
-    $(window).load(function() {
-        // Post_Toc parent position fixed
-        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
-    });
-</script>
-
-<!-- MathJax Load-->
-
-
-                </main>
-            </div>
-        </body>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
     
+<script>
+  var disqus_shortname = 'mystery0';
+  
+  var disqus_url = 'http://imystery0.cn/2017/01/11/小谈Android系统文件目录/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
 </html>
